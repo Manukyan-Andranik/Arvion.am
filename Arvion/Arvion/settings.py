@@ -19,7 +19,7 @@ SECRET_KEY = "django-insecure-!hu)b&ofry6yz)e7e3us_44#23*o8+!+9cbuzf83i4_d_l3agx
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["arvion-am.onrender.com", "3.75.158.163"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -104,6 +104,5 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
-
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

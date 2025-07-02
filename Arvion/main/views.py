@@ -2,7 +2,6 @@ import os
 import cv2
 import pickle
 import numpy as np
-import mediapipe as mp
 from django.urls import reverse
 import qrcode
 import base64
