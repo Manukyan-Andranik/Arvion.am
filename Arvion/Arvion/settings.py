@@ -19,7 +19,17 @@ SECRET_KEY = "django-insecure-!hu)b&ofry6yz)e7e3us_44#23*o8+!+9cbuzf83i4_d_l3agx
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["arvion-test.onrender.com", "44.226.145.213"]
+ALLOWED_HOSTS = [
+    "arvion-test.onrender.com",
+    "44.226.145.213",
+    "54.187.200.255",
+    "34.213.214.55",
+    "35.164.95.156",
+    "44.230.95.183",
+    "44.229.200.200",
+]
+
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -66,7 +76,7 @@ WSGI_APPLICATION = "Arvion.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "db.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
