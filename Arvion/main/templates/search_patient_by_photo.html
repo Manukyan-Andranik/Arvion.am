@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{% static 'CSS/search_patient_by_photo.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Որոնել ըստ նկարի - Arvion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    
+</head>
+<body>
+    <header class="page-header container">
+      <a href="{% url 'arvion' %}" class="logo">
+        <img src="{% static 'images/LogoIcon.png' %}" alt="Arvion Logo" class="logo-img" />
+        <span>Arvion</span>
+      </a>
+      <div class="header-actions">
+        <a href="{% url 'profile' %}">
+            <img src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% else %}{% static 'images/default_avatar.png' %}{% endif %}" alt="User Avatar" class="header-user-avatar" />
+        </a>
+      </div>
+    </header>
+
+    <main class="search-page-main container">
+      <div class="search-card">
+        <div class="icon"><i class="fa-solid fa-user-magnifying-glass"></i></div>
+        <h1>Որոնել ըստ նկարի</h1>
+        <p class="description">
+            Վերբեռնեք պացիենտի լուսանկարը՝ համակարգում նրան գտնելու և բժշկական տվյալները դիտելու համար։
+        </p>
+
+        {% if messages %}
+        <ul class="messages-container">
+            {% for message in messages %}
+            <li class="message {{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data" class="upload-form">
+            {% csrf_token %}
+            
+            <div class="file-upload-wrapper">
+                <label for="patient_photo_input" class="file-upload-label">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Ընտրել ֆայլ
+                </label>
+                <input type="file" name="patient_photo" id="patient_photo_input" accept="image/*" required>
+            </div>
+            
+            <span id="file-name">Ֆայլ ընտրված չէ</span>
+
+            <button type="submit" class="submit-btn">Որոնել</button>
+        </form>
+      </div>
+    </main>
+    <script>
+      const fileInput = document.getElementById('patient_photo_input');
+      const fileNameSpan = document.getElementById('file-name');
+      fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                fileNameSpan.textContent = fileInput.files[0].name;
+                fileNameSpan.style.color = 'var(--text-secondary)';
+                fileNameSpan.style.fontStyle = 'normal';
+            } else {
+                fileNameSpan.textContent = 'Ֆայլ ընտրված չէ';
+                fileNameSpan.style.color = 'var(--text-muted)';
+                fileNameSpan.style.fontStyle = 'italic';
+            }
+      });
+    </script>
+</body>
+</html>

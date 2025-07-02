@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{% static 'CSS/patient_details.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Պացիենտի տվյալներ - {{ patient.get_full_name }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+</head>
+<body>
+    <header class="page-header container">
+        <a href="{% url 'arvion' %}" class="logo">
+            <img src="{% static 'images/LogoIcon.png' %}" alt="Arvion Logo" style="height: 32px;" />
+            <span>Arvion - Բժշկի վահանակ</span>
+        </a>
+         <a href="{% url 'profile' %}" style="color:white; text-decoration: none;">Իմ պրոֆիլը</a>
+    </header>
+
+    <main class="container">
+        <section class="profile-content">
+            <h1 style="text-align:center; margin-bottom: 20px;">Պացիենտի տվյալները</h1>
+            <div class="profile-main-card">
+                <img src="{% if patient.profile_picture %}{{ patient.profile_picture.url }}{% else %}{% static 'images/default_avatar.png' %}{% endif %}" alt="Profile Picture" class="profile-main-card-avatar" />
+                <div class="name">{{ patient.get_full_name|default:patient.username }}</div>
+                <div class="email">{{ patient.email }}</div>
+            </div>
+
+            {% if patient.patient_profile %}
+            <div class="info-section">
+                <h2 class="section-title">Բժշկական տվյալներ</h2>
+                <div class="info-grid">
+                    <div class="info-item"><span class="label">Արյան խումբ</span><span class="value">{{ patient.patient_profile.blood_group.group_name|default_if_none:'<span class="not-specified">Նշված չէ</span>'|safe }}</span></div>
+                    <div class="info-item"><span class="label">Քաշ</span><span class="value">{% if patient.patient_profile.weight_kg is not None %}{{ patient.patient_profile.weight_kg|stringformat:".1f" }} կգ{% else %}<span class="not-specified">Նշված չէ</span>{% endif %}</span></div>
+                    <div class="info-item"><span class="label">Հասակ</span><span class="value">{% if patient.patient_profile.height_cm is not None %}{{ patient.patient_profile.height_cm|stringformat:".1f" }} սմ{% else %}<span class="not-specified">Նշված չէ</span>{% endif %}</span></div>
+                    <div class="info-item"><span class="label">Ալերգիաներ</span><span class="value">{% for item in patient.patient_profile.allergies.all %}{{ item.name }}{% if not forloop.last %}, {% endif %}{% empty %}<span class="not-specified">Բացակայում է</span>{% endfor %}</span></div>
+                    <div class="info-item"><span class="label">Հիվանդություններ</span><span class="value">{% for pc in patient_conditions %}{{ pc.condition.name }}{% if pc.diagnosis_date %} (<small>{{ pc.diagnosis_date|date:"d.m.Y" }}</small>){% endif %}{% if not forloop.last %}, {% endif %}{% empty %}<span class="not-specified">Բացակայում է</span>{% endfor %}</span></div>
+                    <div class="info-item"><span class="label">Ընդունվող դեղամիջոցներ</span><span class="value">{% for pm in patient_medications %}{{ pm.medication.name }}{% if pm.dosage %} (<small>{{ pm.dosage }}</small>){% endif %}{% if not forloop.last %}, {% endif %}{% empty %}<span class="not-specified">Բացակայում է</span>{% endfor %}</span></div>
+                    <div class="info-item"><span class="label">Վիրահատություններ</span><span class="value">{% for ps in patient_surgeries %}{{ ps.surgery.name }}{% if ps.surgery_date %} (<small>{{ ps.surgery_date|date:"d.m.Y" }}</small>){% endif %}{% if not forloop.last %}, {% endif %}{% empty %}<span class="not-specified">Բացակայում է</span>{% endfor %}</span></div>
+                    <div class="info-item"><span class="label">Այլ նշումներ</span><span class="value">{{ patient.patient_profile.other_notes|default_if_none:'<span class="not-specified">Բացակայում է</span>'|safe|linebreaksbr }}</span></div>
+                </div>
+            </div>
+            {% endif %}
+            <div class="info-section">
+                <h2 class="section-title">Կոնտակտային տվյալներ</h2>
+                <div class="info-grid">
+                    <div class="info-item"><span class="label">Հեռախոսահամար</span><span class="value">{{ patient.phone_number|default_if_none:'<span class="not-specified">Նշված չէ</span>'|safe }}</span></div>
+                    <div class="info-item"><span class="label">Հասցե</span><span class="value">{{ patient.address|default_if_none:'<span class="not-specified">Նշված չէ</span>'|safe }}</span></div>
+                    <div class="info-item"><span class="label">Վստահված անձի հեռ.</span><span class="value">{{ patient.emergency_contact_phone|default_if_none:'<span class="not-specified">Նշված չէ</span>'|safe }}</span></div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,299 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hy">
+  <head>
+    <meta charset="UTF-8" />
+    
+    <link rel="stylesheet" href="{% static 'CSS/arvion.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arvion - Ձեր տվյալներն ապահով են</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="container header-content">
+        <a href="#" class="logo">
+          <img
+            src="{% static 'images/LogoIcon.png' %}"
+            alt="Arvion Logo"
+            class="logo-img"
+          />
+          <span>Arvion</span>
+        </a>
+        <button class="menu-toggle" id="menu-toggle-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <nav class="main-nav" id="main-nav-menu">
+          <div class="nav-links">
+            <a href="{% url 'arvion' %}" data-key="navHome" class="nav-link"
+              >Գլխավոր</a
+            >
+            <a
+              href="{% url 'about_project' %}"
+              data-key="navAbout"
+              class="nav-link"
+              >Նախագծի մասին
+            </a>
+            <a
+              href="{% url 'how_it_works' %}"
+              data-key="navHowItWorks"
+              class="nav-link"
+              >Ինչպես է աշխատում
+            </a>
+          </div>
+          <a
+            href="{% url 'login' %}"
+            class="cta-button nav-cta"
+            data-key="navLogin"
+            >Մուտք / Գրանցում</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-section blue-section-bg">
+        <div class="container">
+          <div class="hero-content">
+            <div class="hero-text">
+              <h1 data-key="heroTitle">
+                Ձեր կյանքի տվյալները՝ հասանելի մեկ հպումով
+              </h1>
+              <a href="https://t.me/Karen12321" class="cta-button hero-cta" data-key="heroCta"
+                >Ստեղծիր քո անվտանգության քարտը
+                <i class="fa-solid fa-arrow-right"></i
+              ></a>
+            </div>
+            <div class="hero-image-container">
+              <img src="{% static 'images/doctor.png' %}" alt="Բժիշկը
+              օգտագործում է տեխնոլոգիա" class="hero-image" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="features-section">
+        <div class="container features-content">
+          <div class="orbit-graphic">
+            <div class="orbit orbit-1">
+              <div class="dot d1"></div>
+              <div class="dot d2"></div>
+              <div class="dot d3"></div>
+              <div class="dot d4"></div>
+            </div>
+            <div class="orbit orbit-2">
+              <div class="dot d1"></div>
+              <div class="dot d2"></div>
+              <div class="dot d3"></div>
+            </div>
+            <div class="orbit-logo-container">
+              <img
+                src="{% static 'images/LogoIcon.png' %}"
+                alt="Arvion Logo"
+                class="orbit-logo-img"
+              />
+            </div>
+          </div>
+          <div class="features-text">
+            <h2 data-key="featuresTitle">
+              Նախագծի հիմնական
+              <span
+                class="highlight-underline"
+                data-key="featuresTitleHighlight"
+                >առավելությունները</span
+              >
+            </h2>
+            <p data-key="featuresText">
+              Արագություն արտակարգ իրավիճակներում, Տվյալների կենտրոնացում, Հեշտ
+              հասանելիություն բժիշկների համար։
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="how-it-works-section blue-section-bg">
+        <div class="container">
+          <h2>
+            <span class="blue-underline" data-key="howTitle"
+              >Ինչպես է աշխատում</span
+            >
+          </h2>
+          <p data-key="howText">
+            Գրանցվիր → Մուտքագրիր տվյալներդ → Ստացիր QR կոդ → Կիսվիր բժիշկների
+            հետ՝ հեշտությամբ։
+          </p>
+          <a href="{% url 'login' %}" class="cta-button" data-key="howCta"
+            >Միացիր մեզ / Գրանցվիր <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer blue-section-bg">
+      <div class="container footer-content">
+        <div class="footer-links">
+          <div class="language-switcher-container">
+            <a
+              href="#"
+              class="language-selector"
+              id="language-selector"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fa-solid fa-globe"></i>
+              <span id="current-lang">Հայերեն</span>
+              <i class="fa-solid fa-chevron-down fa-xs"></i>
+            </a>
+            <div class="language-dropdown" id="language-dropdown" role="menu">
+              <a href="#" data-lang-code="hy" role="menuitem">Հայերեն</a>
+              <a href="#" data-lang-code="en" role="menuitem">English</a>
+              <a href="#" data-lang-code="ru" role="menuitem">Русский</a>
+            </div>
+          </div>
+          <a href="{% url 'terms_privacy' %}"><span data-key="footerTerms">Terms & privacy</span></a>
+          <a href="{% url 'security' %}"><span data-key="footerSecurity">Security</span></a>
+          <a href="{% url 'status' %}"><span data-key="footerStatus">Status</span></a>
+        </div>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" aria-label="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+        </div>
+      </div>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuToggle = document.getElementById("menu-toggle-btn");
+        const mainNav = document.getElementById("main-nav-menu");
+        if (menuToggle)
+          menuToggle.addEventListener("click", () =>
+            mainNav.classList.toggle("active")
+          );
+
+        const translations = {
+          hy: {
+            pageTitle: "Arvion - Ձեր տվյալներն ապահով են",
+            navHome: "Գլխավոր",
+            navAbout: "Նախագծի մասին",
+            navHowItWorks: "Ինչպես է աշխատում",
+            navLogin: "Մուտք / Գրանցում",
+            heroTitle: "Ձեր կյանքի տվյալները՝ հասանելի մեկ հպումով",
+            heroCta: "Ստեղծիր քո անվտանգության քարտը",
+            featuresTitle:
+              'Նախագծի հիմնական <span class="highlight-underline">առավելությունները</span>',
+            featuresText:
+              "Արագություն արտակարգ իրավիճակներում, Տվյալների կենտրոնացում, Հեշտ հասանելիություն բժիշկների համար։",
+            howTitle: '<span class="blue-underline">Ինչպես է աշխատում</span>',
+            howText:
+              "Գրանցվիր → Մուտքագրիր տվյալներդ → Ստացիր QR կոդ → Կիսվիր բժիշկների հետ՝ հեշտությամբ։",
+            howCta: "Միացիր մեզ / Գրանցվիր",
+            footerTerms: "Terms & privacy",
+            footerSecurity: "Security",
+            footerStatus: "Status",
+          },
+          en: {
+            pageTitle: "Arvion - Your Data is Secure",
+            navHome: "Home",
+            navAbout: "About",
+            navHowItWorks: "How It Works",
+            navLogin: "Login / Sign Up",
+            heroTitle: "Your life data, accessible in one touch",
+            heroCta: "Create your security card",
+            featuresTitle:
+              'Key project <span class="highlight-underline">advantages</span>',
+            featuresText:
+              "Speed in emergencies, Data centralization, Easy access for doctors.",
+            howTitle: '<span class="blue-underline">How It Works</span>',
+            howText:
+              "Sign up → Enter your data → Get a QR code → Share with doctors easily.",
+            howCta: "Join Us / Sign Up",
+            footerTerms: "Terms & privacy",
+            footerSecurity: "Security",
+            footerStatus: "Status",
+          },
+          ru: {
+            pageTitle: "Arvion - Ваши данные в безопасности",
+            navHome: "Главная",
+            navAbout: "О проекте",
+            navHowItWorks: "Как это работает",
+            navLogin: "Вход / Регистрация",
+            heroTitle: "Данные о вашей жизни, доступны в одно касание",
+            heroCta: "Создайте свою карту безопасности",
+            featuresTitle:
+              'Ключевые <span class="highlight-underline">преимущества проекта</span>',
+            featuresText:
+              "Скорость в экстренных ситуациях, Централизация данных, Легкий доступ для врачей.",
+            howTitle: '<span class="blue-underline">Как это работает</span>',
+            howText:
+              "Зарегистрируйтесь → Введите данные → Получите QR-код → Легко делитесь с врачами.",
+            howCta: "Присоединяйтесь / Регистрация",
+            footerTerms: "Условия и конфиденциальность",
+            footerSecurity: "Безопасность",
+            footerStatus: "Статус",
+          },
+        };
+
+        const langSelector = document.getElementById("language-selector");
+        const langDropdown = document.getElementById("language-dropdown");
+        const currentLangSpan = document.getElementById("current-lang");
+
+        const setLanguage = (lang) => {
+          document.querySelectorAll("[data-key]").forEach((element) => {
+            const key = element.getAttribute("data-key");
+            if (translations[lang][key]) {
+              if (key.includes("Title")) {
+                element.innerHTML = translations[lang][key];
+              } else {
+                const icon = element.querySelector(
+                  "i.fa-arrow-right, i.fa-chevron-down"
+                );
+                element.innerHTML =
+                  translations[lang][key] + (icon ? ` ${icon.outerHTML}` : "");
+              }
+            }
+          });
+          document.documentElement.lang = lang;
+          document.title = translations[lang].pageTitle;
+          const langName = document.querySelector(
+            `[data-lang-code="${lang}"]`
+          ).textContent;
+          currentLangSpan.textContent = langName;
+          localStorage.setItem("userLanguage", lang);
+        };
+
+        langSelector.addEventListener("click", (event) => {
+          event.preventDefault();
+          langDropdown.classList.toggle("show");
+        });
+
+        langDropdown.addEventListener("click", (event) => {
+          event.preventDefault();
+          const langCode = event.target
+            .closest("[data-lang-code]")
+            ?.getAttribute("data-lang-code");
+          if (langCode) {
+            setLanguage(langCode);
+            langDropdown.classList.remove("show");
+          }
+        });
+
+        window.addEventListener("click", (event) => {
+          if (!langSelector.contains(event.target)) {
+            langDropdown.classList.remove("show");
+          }
+        });
+
+        const savedLang = localStorage.getItem("userLanguage") || "hy";
+        setLanguage(savedLang);
+      });
+    </script>
+  </body>
+</html>

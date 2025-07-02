@@ -1,0 +1,454 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hy">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{% static 'CSS/about_project.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arvion - Պաշտպանել Ամենակարևորը</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="container header-content">
+        <a href="#" class="logo">
+          <img
+            src="{% static 'images/LogoIcon.png' %}"
+            alt="Arvion Logo"
+            class="logo-img"
+          />
+          <span data-key="logoText">Arvion</span>
+        </a>
+        <nav class="desktop-nav">
+          <ul class="desktop-nav-links">
+            <li><a href="{% url 'arvion' %}" data-key="navHome">Գլխավոր</a></li>
+            <li>
+              <a href="{% url 'about_project' %}" data-key="navAbout"
+                >Նախագծի մասին
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'how_it_works' %}" data-key="navHowItWorks"
+                >Ինչպես է աշխատում
+              </a>
+            </li>
+          </ul>
+          <a href="{% url 'login' %}" class="btn btn-yellow" data-key="navLogin"
+            >Մուտք / Գրանցում</a
+          >
+        </nav>
+        <button class="menu-toggle" id="menu-toggle-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobile-nav-menu">
+      <ul class="mobile-nav-links">
+        <li><a href="{% url 'arvion' %}" data-key="navHome">Գլխավոր</a></li>
+        <li>
+          <a href="{% url 'about_project' %}" data-key="navAbout"
+            >Նախագծի մասին</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'how_it_works' %}" data-key="navHowItWorks"
+            >Ինչպես է աշխատում</a
+          >
+        </li>
+      </ul>
+      <a href="{% url 'login' %}" class="btn btn-yellow" data-key="navLogin"
+        >Մուտք / Գրանցում</a
+      >
+    </nav>
+
+    <main>
+      <section class="hero-section blue-section">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-text-content">
+              <h1 data-key="heroTitle">Մեր նպատակը՝ պաշտպանել ամենակարևորը</h1>
+              <p data-key="heroParagraph"></p>
+            </div>
+            <div class="hero-image-content">
+              <svg
+                class="hero-image"
+                viewBox="0 0 250 250"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs>
+                  <filter
+                    id="shadow"
+                    x="-20%"
+                    y="-20%"
+                    width="140%"
+                    height="140%"
+                  >
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+                    <feOffset dx="2" dy="4" result="offsetblur" />
+                    <feComponentTransfer>
+                      <feFuncA type="linear" slope="0.5" />
+                    </feComponentTransfer>
+                    <feMerge>
+                      <feMergeNode />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                  <clipPath id="phone-screen">
+                    <rect x="52" y="27" width="146" height="196" rx="15" />
+                  </clipPath>
+                </defs>
+                <g filter="url(#shadow)">
+                  <rect
+                    x="50"
+                    y="25"
+                    width="150"
+                    height="200"
+                    rx="20"
+                    fill="#E2E8F0"
+                  />
+                  <rect
+                    x="55"
+                    y="30"
+                    width="140"
+                    height="190"
+                    rx="15"
+                    fill="#FFF"
+                  />
+                </g>
+                <g clip-path="url(#phone-screen)">
+                  <rect x="52" y="27" width="146" height="50" fill="#538FFB" />
+                  <circle cx="80" cy="52" r="12" fill="#FFFFFF" />
+                  <rect
+                    x="100"
+                    y="45"
+                    width="70"
+                    height="5"
+                    fill="#B0BDCE"
+                    rx="2"
+                  />
+                  <rect
+                    x="100"
+                    y="55"
+                    width="50"
+                    height="4"
+                    fill="#B0BDCE"
+                    rx="2"
+                  />
+                  <rect
+                    x="75"
+                    y="85"
+                    width="100"
+                    height="100"
+                    fill="#2D3748"
+                    rx="8"
+                  />
+                  <rect
+                    x="83"
+                    y="93"
+                    width="84"
+                    height="84"
+                    fill="#FFFFFF"
+                    rx="4"
+                  />
+                  <path
+                    fill="#2D3748"
+                    d="M91 101h12v12H91z m16 0h4v4h-4z m8 0h4v4h-4z m4 0h4v4h-4z m-16 8h4v4h-4z m16 -4h4v4h-4z M143 101h12v12h-12z M91 151h12v12H91z M94.5 119.5h5v5h-5z m16 0h5v5h-5z m-8 4h5v5h-5z m-4-8h5v5h-5z m12 16h5v5h-5z m-4 4h5v5h-5z m-16-16h5v5h-5z m4 8h5v5h-5z"
+                  />
+                  <rect x="91" y="125" width="4" height="12" fill="#2D3748" />
+                  <rect x="121" y="133" width="12" height="4" fill="#2D3748" />
+                  <rect x="143" y="125" width="4" height="12" fill="#2D3748" />
+                  <rect x="115" y="101" width="12" height="4" fill="#2D3748" />
+                </g>
+                <g fill="#FDE282" transform="translate(30, 80)">
+                  <path d="M10,0 L14,4 L10,8 L6,4 z" />
+                  <path d="M10,5 L14,9 L10,13 L6,9 z" />
+                </g>
+                <circle cx="210" cy="60" r="8" fill="#538FFB" opacity="0.8" />
+                <path d="M190 180 l 5 -5 l 10 10 l -5 5z" fill="#4ADE80" />
+                <path
+                  d="M40 190 A 5 5 0 1 1 30 190 A 5 5 0 1 1 40 190"
+                  fill="#A78BFA"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="principles-section">
+        <div class="container">
+          <h2 data-key="principlesTitle"></h2>
+          <ul class="principles-list">
+            <li class="principle-item">
+              <div class="principle-icon icon-bg-blue">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <h3 data-key="principle1Title"></h3>
+              <p data-key="principle1Desc"></p>
+            </li>
+            <li class="principle-item">
+              <div class="principle-icon icon-bg-yellow">
+                <i class="fa-solid fa-bolt-lightning"></i>
+              </div>
+              <h3 data-key="principle2Title"></h3>
+              <p data-key="principle2Desc"></p>
+            </li>
+            <li class="principle-item">
+              <div class="principle-icon icon-bg-green">
+                <i class="fa-solid fa-microchip"></i>
+              </div>
+              <h3 data-key="principle3Title"></h3>
+              <p data-key="principle3Desc"></p>
+            </li>
+            <li class="principle-item">
+              <div class="principle-icon icon-bg-purple">
+                <i class="fa-solid fa-universal-access"></i>
+              </div>
+              <h3 data-key="principle4Title"></h3>
+              <p data-key="principle4Desc"></p>
+            </li>
+            <li class="principle-item">
+              <div class="principle-icon icon-bg-orange">
+                <i class="fa-solid fa-tower-broadcast"></i>
+              </div>
+              <h3 data-key="principle5Title"></h3>
+              <p data-key="principle5Desc"></p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="cta-section blue-section">
+        <div class="container">
+          <h2 data-key="ctaTitle"></h2>
+          <p data-key="ctaText"></p>
+          <a href="{% url 'login' %}" class="btn btn-blue" data-key="ctaButton"></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer blue-section">
+      <div class="container footer-content">
+        <div class="footer-links">
+          <div class="language-switcher-container">
+            <a href="#" class="language-selector" id="language-selector">
+              <i class="fa-solid fa-globe"></i>
+              <span id="current-lang">Հայերեն</span>
+              <i class="fa-solid fa-chevron-down fa-xs"></i>
+            </a>
+            <div class="language-dropdown" id="language-dropdown">
+              <a href="#" data-lang-code="hy">Հայերեն</a>
+              <a href="#" data-lang-code="en">English</a>
+              <a href="#" data-lang-code="ru">Русский</a>
+            </div>
+          </div>
+          <a href="{% url 'terms_privacy' %}"><span data-key="footerTerms"></span></a>
+          <a href="{% url 'security' %}"><span data-key="footerSecurity"></span></a>
+          <a href="{% url 'status' %}"><span data-key="footerStatus"></span></a>
+        </div>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" aria-label="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+        </div>
+      </div>
+    </footer>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+        const menuToggleBtn = document.getElementById("menu-toggle-btn");
+        const mobileNavMenu = document.getElementById("mobile-nav-menu");
+        const mobileNavLinks = mobileNavMenu.querySelectorAll("a");
+        const langSelector = document.getElementById("language-selector");
+        const langDropdown = document.getElementById("language-dropdown");
+
+        const translations = {
+          hy: {
+            pageTitle: "Arvion - Պաշտպանել Ամենակարևորը",
+            logoText: "Arvion",
+            navHome: "Գլխավոր",
+            navAbout: "Նախագծի մասին",
+            navHowItWorks: "Ինչպես է աշխատում",
+            navLogin: "Մուտք / Գրանցում",
+            heroTitle: "Պաշտպանենք ամենաթանկը",
+            heroParagraph:
+              "Պատկերացրեք արտակարգ իրավիճակ, երբ Դուք կամ Ձեր հարազատը չեք կարողանում խոսել։ Իսկ բժիշկը պետք է անհապաղ իմանա Ձեր քրոնիկ հիվանդությունների, ալերգիաների, ընդունած դեղերի կամ արյան խմբի մասին։ Այս տվյալներից է կախված մարդու կյանքը։ <br><br> Arvion-ը ստեղծվել է հենց այս խնդիրը լուծելու համար։ Մեր նպատակն է, որ ժամանակակից տեխնոլոգիաները ծառայեն մարդու անվտանգությանը։ <br><br> Սա ապահով հարթակ է, որտեղ յուրաքանչյուրը կարող է պահել իր կենսական տվյալները, իսկ բժիշկը՝ վայրկյանների ընթացքում ստանալ դրանք՝ փրկելով թանկագին ժամանակ։",
+            principlesTitle: "Մեր աշխատանքի հիմքում են՝",
+            principle1Title: "Անվտանգություն",
+            principle1Desc:
+              "Ձեր առողջական տվյալները բացարձակ անվտանգության մեջ են։ Մենք օգտագործում ենք կոդավորման ժամանակակից համակարգեր՝ Ձեր տեղեկատվությունն անառիկ պահելու համար։",
+            principle2Title: "Արագություն",
+            principle2Desc:
+              "Արտակարգ իրավիճակներում յուրաքանչյուր վայրկյանը վճռորոշ է։ Arvion-ի միջոցով տվյալները հասանելի են դառնում ակնթարթորեն։",
+            principle3Title: "Նորարարություն",
+            principle3Desc:
+              "Մենք կիրառում ենք տվյալների հասանելիության ամենաարդիական միջոցները՝ սկսած QR կոդից և անհպում NFC տեխնոլոգիայից մինչև դեմքի ճանաչում։ Այս ամենը՝ լավագույն արդյունքն ապահովելու համար։",
+            principle4Title: "Պարզություն",
+            principle4Desc:
+              "Համակարգը շատ պարզ է և հարմար։ Ցանկացած մարդ կարող է հեշտությամբ ստեղծել իր անձնական էջը և կառավարել այն։",
+            principle5Title: "Ակնթարթային հասանելիություն",
+            principle5Desc:
+              "Ստեղծեք Ձեր անձնական քարտը, ապարանջանը կամ կպչուն պիտակը։ Դրանք կունենան և՛ QR կոդ, և՛ ներդրված NFC չիպ։ Սա թույլ կտա բժշկին ստանալ Ձեր տվյալներն ակնթարթորեն՝ կա՛մ սկանավորելով կոդը, կա՛մ պարզապես մոտեցնելով հեռախոսը։",
+            ctaTitle: "Պատրա՞ստ եք պաշտպանել Ձեզ և Ձեր հարազատներին",
+            ctaText:
+              "Եկե՛ք միասին կերտենք մի ապագա, որտեղ տեխնոլոգիաներն օգնում են փրկել մարդկային կյանքեր։",
+            ctaButton: "Միացի՛ր մեզ",
+            footerTerms: "Պայմաններ և գաղտնիություն",
+            footerSecurity: "Անվտանգություն",
+            footerStatus: "Կարգավիճակ",
+          },
+          en: {
+            pageTitle: "Arvion - Protecting What Matters Most",
+            navLogin: "Login / Sign Up",
+            heroTitle: "Protecting What Matters Most",
+            heroParagraph:
+              "Imagine an emergency where you or your loved one cannot speak. A doctor needs to know immediately about your chronic conditions, allergies, medications, or blood type. A person's life depends on these critical details. <br><br> Arvion was created to solve this very problem. Our goal is to make modern technology serve human safety. <br><br> This is a secure platform where everyone can store their vital data, and doctors can access it in seconds, saving precious time.",
+            principlesTitle: "Our Work Is Based On:",
+            principle1Title: "Security",
+            principle1Desc:
+              "Your health data is completely secure. We use modern encryption systems to keep your information protected.",
+            principle2Title: "Speed",
+            principle2Desc:
+              "In emergencies, every second is crucial. With Arvion, data becomes available instantly.",
+            principle3Title: "Innovation",
+            principle3Desc:
+              "We use the most modern data access methods, from QR codes and contactless NFC technology to facial recognition, all to ensure the best results.",
+            principle4Title: "Simplicity",
+            principle4Desc:
+              "The system is very simple and user-friendly. Anyone can easily create and manage their personal profile.",
+            principle5Title: "Instant Access",
+            principle5Desc:
+              "Create your personal card, wristband, or sticker. They will feature both a QR code and an embedded NFC chip. This allows a doctor to get your data instantly—either by scanning the code or simply tapping it with a smartphone.",
+            ctaTitle: "Ready to Protect Yourself and Your Loved Ones?",
+            ctaText:
+              "Let's build a future together where technology helps save human lives.",
+            ctaButton: "Join Us",
+            footerTerms: "Terms & Privacy",
+            footerSecurity: "Security",
+            footerStatus: "Status",
+          },
+          ru: {
+            pageTitle: "Arvion - Защищая самое важное",
+            navLogin: "Вход / Регистрация",
+            heroTitle: "Защитим самое ценное",
+            heroParagraph:
+              "Представьте себе чрезвычайную ситуацию, когда вы или ваш близкий человек не можете говорить. А врачу необходимо немедленно узнать о ваших хронических заболеваниях, аллергиях, принимаемых лекарствах или группе крови. От этих данных зависит жизнь человека. <br><br> Arvion был создан именно для решения этой проблемы. Наша цель — сделать так, чтобы современные технологии служили безопасности человека. <br><br> Это безопасная платформа, где каждый может хранить свои жизненно важные данные, а врач — получать их за считанные секунды, экономя драгоценное время.",
+            principlesTitle: "В основе нашей работы:",
+            principle1Title: "Безопасность",
+            principle1Desc:
+              "Ваши медицинские данные находятся в полной безопасности. Мы используем современные системы шифрования, чтобы ваша информация была неприкосновенна.",
+            principle2Title: "Скорость",
+            principle2Desc:
+              "В экстренных ситуациях каждая секунда имеет решающее значение. С помощью Arvion данные становятся доступны мгновенно.",
+            principle3Title: "Инновации",
+            principle3Desc:
+              "Мы применяем самые современные методы доступа к данным: от QR-кода и бесконтактной технологии NFC до распознавания лиц. Всё это — для обеспечения наилучших результатов.",
+            principle4Title: "Простота",
+            principle4Desc:
+              "Система очень проста и удобна. Любой человек может легко создать свой личный профиль и управлять им.",
+            principle5Title: "Мгновенный доступ",
+            principle5Desc:
+              "Создайте свою личную карту, браслет или стикер. На каждом носителе будет и QR-код, и встроенный NFC-чип. Это позволит врачу мгновенно получить ваши данные: отсканировав код или просто прикоснувшись к носителю смартфоном.",
+            ctaTitle: "Готовы защитить себя и своих близких?",
+            ctaText:
+              "Давайте вместе создавать будущее, в котором технологии помогают спасать человеческие жизни.",
+            ctaButton: "Присоединяйся к нам",
+            footerTerms: "Условия и конфиденциальность",
+            footerSecurity: "Безопасность",
+            footerStatus: "Статус",
+          },
+        };
+
+        const icon = menuToggleBtn.querySelector("i");
+        const closeMobileMenu = () => {
+          mobileNavMenu.classList.remove("active");
+          icon.classList.remove("fa-times");
+          icon.classList.add("fa-bars");
+        };
+        menuToggleBtn.addEventListener("click", (event) => {
+          event.stopPropagation();
+          const isActive = mobileNavMenu.classList.toggle("active");
+          icon.classList.toggle("fa-bars", !isActive);
+          icon.classList.toggle("fa-times", isActive);
+        });
+        mobileNavLinks.forEach((link) =>
+          link.addEventListener("click", closeMobileMenu)
+        );
+
+        const setLanguage = (lang) => {
+          if (!translations[lang]) return;
+
+          const staticContent = {
+            en: {
+              navHome: "Home",
+              navAbout: "About Project",
+              navHowItWorks: "How It Works",
+            },
+            ru: {
+              navHome: "Главная",
+              navAbout: "О проекте",
+              navHowItWorks: "Как это работает",
+            },
+          };
+          const t = {
+            ...translations.hy,
+            ...staticContent[lang],
+            ...translations[lang],
+          };
+
+          document.querySelectorAll("[data-key]").forEach((element) => {
+            const key = element.getAttribute("data-key");
+            if (t[key] !== undefined) {
+              element.innerHTML = t[key];
+            }
+          });
+          document.documentElement.lang = lang;
+          document.title = t.pageTitle;
+          document.getElementById("current-lang").textContent =
+            langDropdown.querySelector(
+              `a[data-lang-code="${lang}"]`
+            ).textContent;
+          localStorage.setItem("userLanguage", lang);
+        };
+
+        langSelector.addEventListener("click", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          langDropdown.classList.toggle("show");
+        });
+
+        langDropdown.addEventListener("click", (event) => {
+          event.preventDefault();
+          const langLink = event.target.closest("[data-lang-code]");
+          if (langLink) {
+            setLanguage(langLink.getAttribute("data-lang-code"));
+            langDropdown.classList.remove("show");
+          }
+        });
+
+        document.body.addEventListener("click", (event) => {
+          if (!menuToggleBtn.contains(event.target)) {
+            closeMobileMenu();
+          }
+          if (!langSelector.contains(event.target)) {
+            langDropdown.classList.remove("show");
+          }
+        });
+
+        mobileNavMenu.addEventListener("click", (e) => e.stopPropagation());
+        langDropdown.addEventListener("click", (e) => e.stopPropagation());
+
+        const savedLang = localStorage.getItem("userLanguage") || "hy";
+        setLanguage(savedLang);
+  });
+</script>
+  </body>
+</html>

@@ -1,0 +1,325 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{% static 'CSS/register.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arvion - Գրանցում</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    
+</head>
+<body>
+    <header class="page-header container">
+        <a href="/" class="logo">
+            <img src="{% static 'images/LogoIcon.png' %}" alt="Arvion Logo" class="logo-img" />
+            <span data-key="brandName">Arvion</span>
+        </a>
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <nav class="main-nav" id="main-nav">
+            <div class="nav-link-wrapper">
+                <a href="{% url 'arvion' %}" data-key="navHome" class="nav-link">Գլխավոր</a>
+                <a href="{% url 'about_project' %}" data-key="navAbout" class="nav-link">Նախագծի մասին</a>
+                <a href="{% url 'how_it_works' %}" data-key="navHowItWorks" class="nav-link">Ինչպես է աշխատում</a>
+            </div>
+            <a href="{% url 'login' %}" class="cta-button nav-cta" data-key="navLogin">Մուտք / Գրանցում</a>
+        </nav>
+    </header>
+
+    <main class="registration-section container">
+        <div class="form-wrapper">
+            <div class="form-container">
+                <h1 data-key="title">Գրանցում</h1>
+
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="{{ message.tags }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                
+                <form id="registration-form" method="POST" action="{% url 'register' %}">
+                    {% csrf_token %}
+
+                    <div class="role-toggle">
+                        <button type="button" class="role-btn active" data-role="patient" data-key="rolePatient">Ես Պացիենտ եմ</button>
+                        <button type="button" class="role-btn" data-role="doctor" data-key="roleDoctor">Ես Բժիշկ եմ</button>
+                    </div>
+                    <input type="hidden" name="role" id="role-input" value="{{ form_data.role|default:'patient' }}">
+
+                    <div class="form-group">
+                        <label for="name" data-key="nameLabel">Անուն <span class="mandatory" data-key="mandatoryText">(պարտադիր)</span></label>
+                        <input type="text" id="name" name="first_name" required data-key-placeholder="placeholderName" value="{{ form_data.first_name|default:'' }}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname" data-key="lastnameLabel">Ազգանուն <span class="mandatory" data-key="mandatoryText">(պարտադիր)</span></label>
+                        <input type="text" id="lastname" name="last_name" required data-key-placeholder="placeholderLastname" value="{{ form_data.last_name|default:'' }}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-key="emailLabel">Էլ․ հասցե <span class="mandatory" data-key="mandatoryText">(պարտադիր)</span></label>
+                        <input type="email" id="email" name="email" required data-key-placeholder="placeholderEmail" value="{{ form_data.email|default:'' }}" />
+                    </div>
+
+                    <div class="form-group hidden" id="doctor-specialty-group">
+                        <label for="specialty" data-key="specialtyLabel">Մասնագիտություն</label>
+                        <select id="specialty" name="specialty">
+                            <option value="therapist" data-key="specTherapist">Թերապևտ</option>
+                            <option value="pediatrician" data-key="specPediatrician">Մանկաբույժ</option>
+                            <option value="cardiologist" data-key="specCardiologist">Սրտաբան</option>
+                            <option value="gynecologist" data-key="specGynecologist">Գինեկոլոգ</option>
+                            <option value="dermatologist" data-key="specDermatologist">Մաշկաբան</option>
+                            <option value="stomatologist" data-key="specStomatologist">Ատամնաբույժ</option>
+                            <option value="neurologist" data-key="specNeurologist">Նյարդաբան</option>
+                            <option value="endocrinologist" data-key="specEndocrinologist">Էնդոկրինոլոգ</option>
+                            <option value="ent" data-key="specEnt">ՔԿԱ (ԼՕՌ)</option>
+                            <option value="ophthalmologist" data-key="specOphthalmologist">Ակնաբույժ</option>
+                            <option value="gastroenterologist" data-key="specGastroenterologist">Գաստրոէնտերոլոգ</option>
+                            <option value="urologist" data-key="specUrologist">Ուրոլոգ</option>
+                            <option value="surgeon" data-key="specSurgeon">Վիրաբույժ</option>
+                            <option value="traumatologist" data-key="specTraumatologist">Վնասվածքաբան</option>
+                            <option value="oncologist" data-key="specOncologist">Ուռուցքաբան</option>
+                            <option value="allergist" data-key="specAllergist">Ալերգոլոգ</option>
+                            <option value="psychiatrist" data-key="specPsychiatrist">Հոգեբույժ</option>
+                            <option value="rheumatologist" data-key="specRheumatologist">Ռևմատոլոգ</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" data-key="passwordLabel">Գաղտնաբառ <span class="mandatory" data-key="mandatoryText">(պարտադիր)</span></label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="password" name="password" minlength="8" required data-key-placeholder="placeholderPassword" />
+                            <button type="button" class="toggle-password" aria-label="Toggle password visibility"><i class="fa-solid fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_password" data-key="confirmPasswordLabel">Կրկնել գաղտնաբառը <span class="mandatory" data-key="mandatoryText">(պարտադիր)</span></label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="confirm_password" name="password2" required data-key-placeholder="placeholderConfirmPassword" />
+                            <button type="button" class="toggle-password" aria-label="Toggle password visibility"><i class="fa-solid fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob" data-key="dobLabel">Ծննդյան ամսաթիվ <span class="mandatory" data-key="mandatoryText">(պարտադիր)</span></label>
+                        <input type="date" id="dob" name="date_of_birth" required value="{{ form_data.date_of_birth|default:'' }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label data-key="genderLabel">Սեռ</label>
+                        <div class="gender-group">
+                            <div class="radio-option" style="width: 50%;">
+                                <input type="radio" id="male" name="gender" value="Male" {% if form_data.gender == 'Male' or not form_data.gender %}checked{% endif %} /><label for="male" data-key="genderMale">Արական</label>
+                            </div>
+                            <div class="radio-option" style="width: 50%;">
+                                <input type="radio" id="female" name="gender" value="Female" {% if form_data.gender == 'Female' %}checked{% endif %} /><label for="female" data-key="genderFemale">Իգական</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="toggle-group">
+                        <label for="terms" data-key="termsLabel">Համաձայն եմ պայմաններին</label>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="terms" name="terms" required />
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn" data-key="submitButton">
+                        Առաջ <i class="fa-solid fa-arrow-right" style="margin-left: 10px"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="page-footer container">
+        <div class="footer-content">
+            <div class="footer-links">
+                <div class="language-selector-wrapper" id="language-selector">
+                    <i class="fa-solid fa-globe"></i>
+                    <span id="current-lang">Հայերեն</span>
+                    <i class="fa-solid fa-chevron-down fa-xs"></i>
+                    <div class="language-dropdown" id="language-dropdown">
+                        <a href="#" data-lang-code="hy" aria-label="Switch to Armenian">Հայերեն</a>
+                        <a href="#" data-lang-code="en" aria-label="Switch to English">English</a>
+                        <a href="#" data-lang-code="ru" aria-label="Switch to Russian">Русский</a>
+                    </div>
+                </div>
+                <a href="{% url 'terms_privacy' %}"><span data-key="footerTerms">Terms & privacy</span></a>
+                <a href="{% url 'security' %}"><span data-key="footerSecurity">Security</span></a>
+                <a href="{% url 'status' %}"><span data-key="footerStatus">Status</span></a>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById("mobile-menu-toggle");
+            const mainNav = document.getElementById("main-nav");
+
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener("click", () => {
+                    mainNav.classList.toggle("is-open");
+                    const icon = menuToggle.querySelector("i");
+                    icon.classList.toggle("fa-bars");
+                    icon.classList.toggle("fa-xmark");
+                    if (mainNav.classList.contains("is-open")) {
+                        document.body.style.overflow = "hidden";
+                    } else {
+                        document.body.style.overflow = "";
+                    }
+                });
+                mainNav.querySelectorAll("a").forEach(link => {
+                    link.addEventListener("click", () => {
+                        if (mainNav.classList.contains("is-open")) {
+                            mainNav.classList.remove("is-open");
+                            document.body.style.overflow = "";
+                            const icon = menuToggle.querySelector("i");
+                            icon.classList.add("fa-bars");
+                            icon.classList.remove("fa-xmark");
+                        }
+                    });
+                });
+            }
+
+            const roleToggle = document.querySelector(".role-toggle");
+            const roleInput = document.getElementById("role-input");
+            const specialtyGroup = document.getElementById("doctor-specialty-group");
+            const specialtySelect = document.getElementById("specialty");
+
+            if (roleToggle) {
+                roleToggle.addEventListener("click", (e) => {
+                    const button = e.target.closest("button");
+                    if (button && !button.classList.contains("active")) {
+                        roleToggle.querySelector(".active").classList.remove("active");
+                        button.classList.add("active");
+                        const selectedRole = button.dataset.role;
+                        roleInput.value = selectedRole;
+                        const isDoctor = (selectedRole === "doctor");
+                        specialtyGroup.classList.toggle("hidden", !isDoctor);
+                        specialtySelect.required = isDoctor;
+                    }
+                });
+            }
+
+            const togglePasswordButtons = document.querySelectorAll('.toggle-password');
+            togglePasswordButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const passwordInput = button.previousElementSibling;
+                    const icon = button.querySelector('i');
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    } else {
+                        passwordInput.type = 'password';
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    }
+                });
+            });
+
+            const translations = {
+                hy: {
+                    title: "Գրանցում", brandName: "Arvion", navHome: "Գլխավոր", navAbout: "Նախագծի մասին", navHowItWorks: "Ինչպես է աշխատում",
+                    navLogin: "Մուտք / Գրանցում", rolePatient: "Ես Պացիենտ եմ", roleDoctor: "Ես Բժիշկ եմ", nameLabel: "Անուն",
+                    lastnameLabel: "Ազգանուն", emailLabel: "Էլ․ հասցե", passwordLabel: "Գաղտնաբառ", confirmPasswordLabel: "Կրկնել գաղտնաբառը",
+                    specialtyLabel: "Մասնագիտություն", dobLabel: "Ծննդյան ամսաթիվ", genderLabel: "Սեռ", genderMale: "Արական", genderFemale: "Իգական",
+                    termsLabel: "Համաձայն եմ պայմաններին", submitButton: "Առաջ", mandatoryText: "(պարտադիր)", footerTerms: "Terms & privacy",
+                    footerSecurity: "Security", footerStatus: "Status", placeholderName: "Ձեր անունը", placeholderLastname: "Ձեր ազգանունը",
+                    placeholderEmail: "example@email.com", placeholderPassword: "Առնվազն 8 նիշ", placeholderConfirmPassword: "Կրկնեք գաղտնաբառը",
+                    specTherapist: "Թերապևտ", specPediatrician: "Մանկաբույժ", specCardiologist: "Սրտաբան", specGynecologist: "Գինեկոլոգ",
+                    specDermatologist: "Մաշկաբան", specStomatologist: "Ատամնաբույժ", specNeurologist: "Նյարդաբան", specEndocrinologist: "Էնդոկրինոլոգ",
+                    specEnt: "ՔԿԱ (ԼՕՌ)", specOphthalmologist: "Ակնաբույժ", specGastroenterologist: "Գաստրոէնտերոլոգ", specUrologist: "Ուրոլոգ",
+                    specSurgeon: "Վիրաբույժ", specTraumatologist: "Վնասվածքաբան", specOncologist: "Ուռուցքաբան", specAllergist: "Ալերգոլոգ",
+                    specPsychiatrist: "Հոգեբույժ", specRheumatologist: "Ռևմատոլոգ",
+                },
+                en: {
+                    title: "Sign Up", brandName: "Arvion", navHome: "Home", navAbout: "About", navHowItWorks: "How it works",
+                    navLogin: "Login / Sign Up", rolePatient: "I'm a Patient", roleDoctor: "I'm a Doctor", nameLabel: "Name",
+                    lastnameLabel: "Lastname", emailLabel: "Email Address", passwordLabel: "Password", confirmPasswordLabel: "Confirm Password",
+                    specialtyLabel: "Specialty", dobLabel: "Date of Birth", genderLabel: "Gender", genderMale: "Male", genderFemale: "Female",
+                    termsLabel: "I agree with the terms", submitButton: "Next", mandatoryText: "(mandatory)", footerTerms: "Terms & privacy",
+                    footerSecurity: "Security", footerStatus: "Status", placeholderName: "Your name", placeholderLastname: "Your lastname",
+                    placeholderEmail: "example@email.com", placeholderPassword: "At least 8 characters", placeholderConfirmPassword: "Repeat your password",
+                    specTherapist: "Therapist", specPediatrician: "Pediatrician", specCardiologist: "Cardiologist", specGynecologist: "Gynecologist",
+                    specDermatologist: "Dermatologist", specStomatologist: "Stomatologist", specNeurologist: "Neurologist", specEndocrinologist: "Endocrinologist",
+                    specEnt: "ENT", specOphthalmologist: "Ophthalmologist", specGastroenterologist: "Gastroenterologist", specUrologist: "Urologist",
+                    specSurgeon: "Surgeon", specTraumatologist: "Traumatologist", specOncologist: "Oncologist", specAllergist: "Allergist",
+                    specPsychiatrist: "Psychiatrist", specRheumatologist: "Rheumatologist",
+                },
+                ru: {
+                    title: "Регистрация", brandName: "Arvion", navHome: "Главная", navAbout: "О проекте", navHowItWorks: "Как это работает",
+                    navLogin: "Вход / Регистрация", rolePatient: "Я Пациент", roleDoctor: "Я Врач", nameLabel: "Имя",
+                    lastnameLabel: "Фамилия", emailLabel: "Эл. адрес", passwordLabel: "Пароль", confirmPasswordLabel: "Повторите пароль",
+                    specialtyLabel: "Специальность", dobLabel: "Дата рождения", genderLabel: "Пол", genderMale: "Мужской", genderFemale: "Женский",
+                    termsLabel: "Я согласен с условиями", submitButton: "Далее", mandatoryText: "(обязательно)", footerTerms: "Условия и конфиденциальность",
+                    footerSecurity: "Безопасность", footerStatus: "Статус", placeholderName: "Ваше имя", placeholderLastname: "Ваша фамилия",
+                    placeholderEmail: "example@email.com", placeholderPassword: "Не менее 8 символов", placeholderConfirmPassword: "Повторите пароль",
+                    specTherapist: "Терапевт", specPediatrician: "Педиатр", specCardiologist: "Кардиолог", specGynecologist: "Гинеколог",
+                    specDermatologist: "Дерматолог", specStomatologist: "Стоматолог", specNeurologist: "Невролог", specEndocrinologist: "Эндокринолог",
+                    specEnt: "ЛОР", specOphthalmologist: "Офтальмолог", specGastroenterologist: "Гастроэнтеролог", specUrologist: "Уролог",
+                    specSurgeon: "Хирург", specTraumatologist: "Травматолог", specOncologist: "Онколог", specAllergist: "Аллерголог",
+                    specPsychiatrist: "Психиатр", specRheumatologist: "Ревматолог",
+                }
+            };
+
+            function setLanguage(lang) {
+                const trans = translations[lang] || translations.hy;
+                document.querySelectorAll("[data-key]").forEach(element => {
+                    const key = element.getAttribute("data-key");
+                    const translationText = trans[key];
+                    if (translationText !== undefined) {
+                        if (element.tagName === 'LABEL') {
+                            const mandatorySpan = element.querySelector('.mandatory');
+                            if(mandatorySpan) {
+                                element.firstChild.nodeValue = translationText + ' ';
+                                mandatorySpan.textContent = trans['mandatoryText'] || '(պարտադիր)';
+                            } else {
+                                element.textContent = translationText;
+                            }
+                        } else {
+                            element.textContent = translationText;
+                        }
+                    }
+                });
+                document.querySelectorAll("[data-key-placeholder]").forEach(input => {
+                    const key = input.getAttribute("data-key-placeholder");
+                    if (trans[key]) input.placeholder = trans[key];
+                });
+                document.documentElement.lang = lang;
+                document.title = `Arvion - ${trans.title}`;
+                document.getElementById("current-lang").textContent = document.querySelector(`.language-dropdown a[data-lang-code="${lang}"]`).textContent;
+                localStorage.setItem("userLanguage", lang);
+            }
+
+            const langSelector = document.getElementById("language-selector");
+            const langDropdown = document.getElementById("language-dropdown");
+            if (langSelector) {
+                langSelector.addEventListener("click", e => { e.stopPropagation(); langDropdown.classList.toggle("show"); });
+            }
+            if (langDropdown) {
+                langDropdown.addEventListener("click", e => {
+                    e.preventDefault();
+                    const langCode = e.target.closest("[data-lang-code]")?.dataset.langCode;
+                    if (langCode) {
+                        setLanguage(langCode);
+                        langDropdown.classList.remove("show");
+                    }
+                });
+            }
+            window.addEventListener("click", () => { if (langDropdown && langDropdown.classList.contains("show")) { langDropdown.classList.remove("show"); } });
+            
+            const savedLang = localStorage.getItem("userLanguage") || "hy";
+            setLanguage(savedLang);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,251 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hy">
+  <head>
+    <link rel="stylesheet" href="{% static 'CSS/security.css' %}" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arvion - Անվտանգություն</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="container header-content">
+        <a href="{% url 'arvion' %}" class="logo">
+          <img
+            src="{% static 'images/LogoIcon.png' %}"
+            alt="Arvion Logo"
+            class="logo-img"
+          />
+          <span data-key="logoText">Arvion</span>
+        </a>
+        <nav class="desktop-nav">
+          <ul class="desktop-nav-links">
+            <li><a href="{% url 'arvion' %}" data-key="navHome"></a></li>
+            <li><a href="{% url 'about_project' %}" data-key="navAbout"></a></li>
+            <li><a href="{% url 'how_it_works' %}" data-key="navHowItWorks"></a></li>
+          </ul>
+          <a href="{% url 'login' %}" class="btn btn-yellow" data-key="navLogin"></a>
+        </nav>
+        <button class="menu-toggle" id="menu-toggle-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobile-nav-menu">
+      <ul class="mobile-nav-links">
+        <li><a href="{% url 'arvion' %}" data-key="navHome"></a></li>
+        <li><a href="{% url 'about_project' %}" data-key="navAbout"></a></li>
+        <li><a href="{% url 'how_it_works' %}" data-key="navHowItWorks"></a></li>
+      </ul>
+      <a href="{% url 'login' %}" class="btn btn-yellow" data-key="navLogin"></a>
+    </nav>
+
+    <main>
+      <div class="content-card-wrapper">
+        <div class="container">
+          <section class="text-content-section">
+            <h1 data-key="pageTitle"></h1>
+            <p data-key="introText"></p>
+            
+            <div class="separator">
+              <hr />
+              <i class="fa-solid fa-shield-halved"></i>
+              <hr />
+            </div>
+            
+            <h2 data-key="encryptionTitle"></h2>
+            <ul>
+              <li data-key="encryptionPoint1"></li>
+              <li data-key="encryptionPoint2"></li>
+            </ul>
+
+            <h2 data-key="accessControlTitle"></h2>
+            <ul>
+              <li data-key="accessControlPoint1"></li>
+              <li data-key="accessControlPoint2"></li>
+            </ul>
+
+            <h2 data-key="infraTitle"></h2>
+            <p data-key="infraDesc"></p>
+
+            <h2 data-key="yourRoleTitle"></h2>
+            <p data-key="yourRoleDesc"></p>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="page-footer">
+      <div class="container footer-content">
+        <div class="footer-links">
+          <div class="language-switcher-container">
+            <a href="#" class="language-selector" id="language-selector">
+              <i class="fa-solid fa-globe"></i>
+              <span id="current-lang">Հայերեն</span>
+              <i class="fa-solid fa-chevron-down fa-xs"></i>
+            </a>
+            <div class="language-dropdown" id="language-dropdown">
+              <a href="#" data-lang-code="hy">Հայերեն</a>
+              <a href="#" data-lang-code="en">English</a>
+              <a href="#" data-lang-code="ru">Русский</a>
+            </div>
+          </div>
+          <a href="{% url 'terms_privacy' %}"><span data-key="footerTerms"></span></a>
+          <a href="{% url 'security' %}"><span data-key="footerSecurity"></span></a>
+          <a href="{% url 'status' %}"><span data-key="footerStatus"></span></a>
+        </div>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+        </div>
+      </div>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuToggleBtn = document.getElementById("menu-toggle-btn");
+        const mobileNavMenu = document.getElementById("mobile-nav-menu");
+        const langSelector = document.getElementById("language-selector");
+        const langDropdown = document.getElementById("language-dropdown");
+
+        const translations = {
+          hy: {
+            docTitle: "Arvion - Անվտանգություն",
+            logoText: "Arvion",
+            navHome: "Գլխավոր",
+            navAbout: "Նախագծի մասին",
+            navHowItWorks: "Ինչպես է աշխատում",
+            navLogin: "Մուտք / Գրանցում",
+            pageTitle: "Անվտանգություն",
+            introText: "Arvion-ում մենք անվտանգությունը դիտարկում ենք ոչ թե որպես առանձնահատկություն, այլ որպես մեր ծառայության հիմք։ Մենք հասկանում ենք, որ Դուք մեզ վստահում եք Ձեր ամենազգայուն տեղեկատվությունը, և մենք գործադրում ենք բոլոր ջանքերը՝ այն պաշտպանելու համար։",
+            encryptionTitle: "Տվյալների գաղտնագրում (Encryption)",
+            encryptionPoint1: "<strong>Տվյալները փոխանցման ընթացքում։</strong> Ձեր սարքի և մեր համակարգերի միջև փոխանցվող ողջ տեղեկատվությունը պաշտպանված է անվտանգ կապի արձանագրություններով։ Սա երաշխավորում է, որ ճանապարհին Ձեր տվյալները չեն կարող կարդացվել կամ փոփոխվել կողմնակի անձանց կողմից։",
+            encryptionPoint2: "<strong>Տվյալները պահպանման ընթացքում։</strong> Մեր սերվերներում պահվող Ձեր բոլոր տվյալները պահվում են գաղտնագրված տեսքով՝ օգտագործելով արդյունաբերության առաջատար ստանդարտներ։ Սա նշանակում է, որ նույնիսկ համակարգերի նկատմամբ չարտոնված ֆիզիկական հասանելիության դեպքում տվյալները մնում են անընթեռնելի և պաշտպանված։",
+            accessControlTitle: "Հասանելիության վերահսկողություն (Access Control)",
+            accessControlPoint1: "<strong>Անհատների համար:</strong> Դուք կարող եք տեսնել և խմբագրել բացառապես Ձեր սեփական տվյալները։",
+            accessControlPoint2: "<strong>Բժիշկների համար:</strong> Բժիշկները պարտադիր անցնում են նույնականացման և հաստատման գործընթաց։ Նրանք կարող են միայն դիտել պացիենտի տվյալները և չեն կարող դրանք փոփոխել։ Համակարգ մուտք գործելու յուրաքանչյուր փորձ և որոնում գրանցվում է մեր կողմից՝ չարաշահումները բացառելու համար։",
+            infraTitle: "Ենթակառուցվածքի անվտանգություն (Infrastructure Security)",
+            infraDesc: "Մեր համակարգերը տեղակայված են առաջատար ամպային ծառայություններ մատուցողների հարթակներում, որոնք ապահովում են պաշտպանության բազմաթիվ շերտեր՝ ներառյալ պաշտպանությունը ցանցային գրոհներից և այլ կիբեռվտանգներից։",
+            yourRoleTitle: "Ձեր դերը անվտանգության հարցում",
+            yourRoleDesc: "Համակարգի անվտանգությունը նաև կախված է Ձեզնից։ Խնդրում ենք օգտագործել բարդ և եզակի գաղտնաբառ, չտրամադրել այն որևէ մեկին և զգույշ լինել կասկածելի հղումներից կամ նամակներից։",
+            footerTerms: "Պայմաններ և գաղտնիություն",
+            footerSecurity: "Անվտանգություն",
+            footerStatus: "Կարգավիճակ"
+          },
+          en: {
+            docTitle: "Arvion - Security",
+            logoText: "Arvion",
+            navHome: "Home",
+            navAbout: "About Project",
+            navHowItWorks: "How It Works",
+            navLogin: "Login / Sign Up",
+            pageTitle: "Security",
+            introText: "At Arvion, we view security not as a feature, but as the foundation of our service. We understand that you trust us with your most sensitive information, and we make every effort to protect it.",
+            encryptionTitle: "Data Encryption",
+            encryptionPoint1: "<strong>Data in Transit.</strong> All information transmitted between your device and our systems is protected by secure communication protocols. This ensures that your data cannot be read or modified by third parties along the way.",
+            encryptionPoint2: "<strong>Data at Rest.</strong> All your data stored on our servers is kept in an encrypted format using industry-leading standards. This means that even in the event of unauthorized physical access to the systems, the data remains unreadable and protected.",
+            accessControlTitle: "Access Control",
+            accessControlPoint1: "<strong>For Individuals:</strong> You can only view and edit your own data.",
+            accessControlPoint2: "<strong>For Doctors:</strong> Doctors undergo a mandatory identification and verification process. They can only view patient data and cannot modify it. Every login attempt and search is logged by us to prevent abuse.",
+            infraTitle: "Infrastructure Security",
+            infraDesc: "Our systems are hosted on platforms of leading cloud service providers, which provide multiple layers of protection, including defense against network attacks and other cyber threats.",
+            yourRoleTitle: "Your Role in Security",
+            yourRoleDesc: "The security of the system also depends on you. Please use a complex and unique password, do not share it with anyone, and be cautious of suspicious links or emails.",
+            footerTerms: "Terms & Privacy",
+            footerSecurity: "Security",
+            footerStatus: "Status"
+          },
+          ru: {
+            docTitle: "Arvion - Безопасность",
+            logoText: "Arvion",
+            navHome: "Главная",
+            navAbout: "О проекте",
+            navHowItWorks: "Как это работает",
+            navLogin: "Вход / Регистрация",
+            pageTitle: "Безопасность",
+            introText: "В Arvion мы рассматриваем безопасность не как особенность, а как основу нашего сервиса. Мы понимаем, что вы доверяете нам свою самую конфиденциальную информацию, и мы прилагаем все усилия для ее защиты.",
+            encryptionTitle: "Шифрование данных (Encryption)",
+            encryptionPoint1: "<strong>Данные при передаче.</strong> Вся информация, передаваемая между вашим устройством и нашими системами, защищена протоколами безопасной связи. Это гарантирует, что ваши данные не могут быть прочитаны или изменены третьими лицами в процессе передачи.",
+            encryptionPoint2: "<strong>Данные при хранении.</strong> Все ваши данные, хранящиеся на наших серверах, сохраняются в зашифрованном виде с использованием ведущих отраслевых стандартов. Это означает, что даже в случае несанкционированного физического доступа к системам, данные остаются нечитаемыми и защищенными.",
+            accessControlTitle: "Контроль доступа (Access Control)",
+            accessControlPoint1: "<strong>Для частных лиц:</strong> Вы можете просматривать и редактировать исключительно свои собственные данные.",
+            accessControlPoint2: "<strong>Для врачей:</strong> Врачи проходят обязательный процесс идентификации и верификации. Они могут только просматривать данные пациента и не могут их изменять. Каждая попытка входа в систему и каждый поиск регистрируются нами для предотвращения злоупотреблений.",
+            infraTitle: "Безопасность инфраструктуры (Infrastructure Security)",
+            infraDesc: "Наши системы размещены на платформах ведущих поставщиков облачных услуг, которые обеспечивают множество уровней защиты, включая защиту от сетевых атак и других киберугроз.",
+            yourRoleTitle: "Ваша роль в обеспечении безопасности",
+            yourRoleDesc: "Безопасность системы также зависит от вас. Пожалуйста, используйте сложный и уникальный пароль, не сообщайте его никому и будьте осторожны с подозрительными ссылками или письмами.",
+            footerTerms: "Условия и конфиденциальность",
+            footerSecurity: "Безопасность",
+            footerStatus: "Статус"
+          }
+        };
+
+        const icon = menuToggleBtn.querySelector("i");
+        const closeMobileMenu = () => {
+          mobileNavMenu.classList.remove("active");
+          icon.classList.remove("fa-times");
+          icon.classList.add("fa-bars");
+        };
+        menuToggleBtn.addEventListener("click", (event) => {
+          event.stopPropagation();
+          const isActive = mobileNavMenu.classList.toggle("active");
+          icon.classList.toggle("fa-bars", !isActive);
+          icon.classList.toggle("fa-times", isActive);
+        });
+        
+        mobileNavMenu.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMobileMenu));
+
+        const setLanguage = (lang) => {
+          if (!translations[lang]) return;
+          const t = translations[lang];
+
+          document.querySelectorAll("[data-key]").forEach((element) => {
+            const key = element.getAttribute("data-key");
+            if (t[key] !== undefined) {
+              element.innerHTML = t[key];
+            }
+          });
+          document.documentElement.lang = lang;
+          document.title = t.docTitle;
+          document.getElementById("current-lang").textContent = langDropdown.querySelector(`a[data-lang-code="${lang}"]`).textContent;
+          localStorage.setItem("userLanguage", lang);
+        };
+
+        langSelector.addEventListener("click", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          langDropdown.classList.toggle("show");
+        });
+
+        langDropdown.addEventListener("click", (event) => {
+          event.preventDefault();
+          const langLink = event.target.closest("[data-lang-code]");
+          if (langLink) {
+            setLanguage(langLink.getAttribute("data-lang-code"));
+            langDropdown.classList.remove("show");
+          }
+        });
+
+        document.body.addEventListener("click", (event) => {
+          if (menuToggleBtn && !menuToggleBtn.contains(event.target) && !mobileNavMenu.contains(event.target)) {
+            closeMobileMenu();
+          }
+          if (langSelector && !langSelector.contains(event.target)) {
+            langDropdown.classList.remove("show");
+          }
+        });
+
+        mobileNavMenu.addEventListener("click", (e) => e.stopPropagation());
+        langDropdown.addEventListener("click", (e) => e.stopPropagation());
+
+        const savedLang = localStorage.getItem("userLanguage") || "hy";
+        setLanguage(savedLang);
+      });
+    </script>
+  </body>
+</html>

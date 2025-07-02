@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8" />
+    
+    <link rel="stylesheet" href="{% static 'CSS/public_profile.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ profile_user.get_full_name|default:profile_user.username }} - Arvion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+      :root {
+        --primary-bg: #043873; --secondary-bg: #0a2a54; --text-primary: #ffffff;
+        --text-secondary: #c0c8d4; --border-color: rgba(255, 255, 255, 0.15);
+        --accent-color: #58a6ff; --text-muted: #8d9bb0;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--primary-bg); color: var(--text-primary); display: flex; flex-direction: column; min-height: 100vh; }
+      .container { width: 90%; max-width: 800px; margin: 0 auto; }
+      .page-header { display: flex; justify-content: center; align-items: center; padding: 30px 0; }
+      .logo { display: flex; align-items: center; gap: 12px; font-size: 1.8rem; font-weight: 700; color: var(--text-primary); text-decoration: none; }
+      .logo-img { height: 36px; }
+      .profile-content { flex-grow: 1; padding: 20px 0; }
+      .profile-main-card { text-align: center; margin-bottom: 40px; }
+      .profile-main-card-avatar { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid var(--white); margin-bottom: 15px; }
+      .profile-main-card .name { font-size: 2rem; font-weight: 600; }
+      .profile-main-card .email { font-size: 1.1rem; color: var(--text-secondary); margin-top: 5px; }
+      .info-section { margin-bottom: 30px; background-color: var(--secondary-bg); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); }
+      .section-title { font-size: 1.2rem; font-weight: 600; text-align: left; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); color: var(--accent-color); }
+      .info-grid .info-item { display: grid; grid-template-columns: 200px 1fr; gap: 15px; padding: 16px 0; border-bottom: 1px solid var(--border-color); align-items: center;}
+      .info-grid .info-item:last-child { border-bottom: none; }
+      .info-item .label { color: var(--text-secondary); font-weight: 500; }
+      .info-item .value { font-weight: 500; text-align: right; word-break: break-word; }
+      .value .not-specified { color: var(--text-muted); font-style: italic; }
+      .page-footer { text-align: center; padding: 20px 0; margin-top: 30px; color: var(--text-secondary); font-size: 0.9rem; }
+
+      /* --- Հեռախոսի տարբերակ (Mobile Styles) --- */
+      @media (max-width: 768px) {
+        .logo { font-size: 1.5rem; }
+        .logo-img { height: 32px; }
+        
+        .profile-main-card-avatar { width: 100px; height: 100px; }
+        .profile-main-card .name { font-size: 1.8rem; }
+        .profile-main-card .email { font-size: 1rem; }
+        
+        .info-section { padding: 20px; }
+        
+        .info-grid .info-item {
+            grid-template-columns: 1fr; /* Մեկ սյունակ */
+            gap: 8px; /* Ավելի փոքր տարածություն */
+            text-align: left; /* Ձախից հավասարեցում */
+            padding: 12px 0;
+        }
+
+        .info-item .value {
+            text-align: left; /* Արժեքը նույնպես ձախից */
+        }
+      }
+    </style>
+</head>
+<body>
+    <header class="page-header container">
+      <a href="{% url 'arvion' %}" class="logo" style="pointer-events: none;">
+        <img src="{% static 'images/LogoIcon.png' %}" alt="Arvion Logo" class="logo-img" />
+        <span>Arvion</span>
+      </a>
+    </header>
+
+    <main class="page-main container">
+      <section class="profile-content">
+        <div class="profile-main-card">
+          <img src="{% if profile_user.profile_picture %}{{ profile_user.profile_picture.url }}{% else %}{% static 'images/default_avatar.png' %}{% endif %}" alt="Profile Picture" class="profile-main-card-avatar" />
+          <div class="name">{{ profile_user.get_full_name|default:profile_user.username }}</div>
+          <div class="email">{{ profile_user.email }}</div>
+        </div>
+        
+        {% if profile_user.patient_profile %}
+        <div class="info-section">
+            <h2 class="section-title">Բժշկական տվյալներ</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="label"><i class="fa-solid fa-tint fa-fw"></i> Արյան խումբ</span>
+                    <span class="value">{{ profile_user.patient_profile.blood_group.group_name|default_if_none:'<span class="not-specified">Նշված չէ</span>'|safe }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label"><i class="fa-solid fa-allergies fa-fw"></i> Ալերգիաներ</span>
+                    <span class="value">{% for item in profile_user.patient_profile.allergies.all %}{{ item.name }}{% if not forloop.last %}, {% endif %}{% empty %}<span class="not-specified">Բացակայում է</span>{% endfor %}</span>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="info-section">
+            <h2 class="section-title">Կոնտակտային տվյալներ</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="label"><i class="fa-solid fa-phone fa-fw"></i> Հեռախոսահամար</span>
+                    <span class="value">{{ profile_user.phone_number|default_if_none:'<span class="not-specified">Նշված չէ</span>'|safe }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label"><i class="fa-solid fa-user-shield fa-fw"></i> Վստահված անձի հեռ.</span>
+                    <span class="value">{{ profile_user.emergency_contact_phone|default_if_none:'<span class="not-specified">Նշված չէ</span>'|safe }}</span>
+                </div>
+            </div>
+        </div>
+      </section>
+    </main>
+    <footer class="page-footer">© {% now "Y" %} Arvion. All rights reserved.</footer>
+</body>
+</html>

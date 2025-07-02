@@ -1,0 +1,134 @@
+      :root {
+        --primary-bg: #043873;
+        --secondary-bg: #0a2a54; 
+        --card-bg: #0c3061; 
+        --text-primary: #ffffff;
+        --text-secondary: #c0c8d4;
+        --border-color: rgba(255, 255, 255, 0.1); 
+        --accent-color: #58a6ff;
+        --text-muted: #8d9bb0;
+        --active-pill-bg: #538ffb;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--primary-bg); color: var(--text-primary);
+        display: flex; flex-direction: column; min-height: 100vh; position: relative;
+      }
+      body::before {
+        content: ""; position: absolute; top: 0; right: 0; width: 50%; height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg width='720' height='1024' viewBox='0 0 720 1024' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.1'%3E%3Cpath d='M476 161C476 161 171.5 244 -20 450C-211.5 656 108.5 596 -161.5 765.5C-431.5 935 -671.5 1093.5 -896 1093.5' stroke='white'/%3E%3Cpath d='M476 156C476 156 171.5 239 -20 445C-211.5 651 108.5 591 -161.5 760.5C-431.5 930 -671.5 1088.5 -896 1088.5' stroke='white'/%3E%3C/g%3E%3C/svg%3E");
+        background-repeat: no-repeat; background-position: top right; z-index: -1;
+      }
+      .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+      .page-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
+      .logo { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 700; color: var(--text-primary); text-decoration: none; }
+      .logo-img { height: 32px; }
+      .header-actions { display: flex; align-items: center; gap: 15px; }
+      .header-user-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--white); }
+      .header-user-info { text-align: right; }
+      .header-user-info .name { font-weight: 500; font-size: 0.9rem; }
+      .header-user-info .email { font-size: 0.8rem; color: var(--text-secondary); }
+      
+      .page-main { display: flex; width: 100%; padding-top: 30px; gap: 40px; }
+      .profile-sidebar { width: 260px; flex-shrink: 0; }
+      .sidebar-nav ul { list-style: none; padding: 0; }
+      .sidebar-nav li a { display: flex; align-items: center; gap: 15px; padding: 14px; color: var(--text-secondary); text-decoration: none; border-radius: 8px; font-weight: 500; transition: all 0.2s; white-space: nowrap; }
+      .sidebar-nav li a:hover { background-color: var(--secondary-bg); color: var(--white); }
+      .sidebar-nav li a.active { background-color: var(--secondary-bg); color: var(--white); }
+      .sidebar-nav li a i { width: 20px; text-align: center; }
+
+      .profile-content { flex-grow: 1; }
+      .profile-main-card { text-align: center; margin-bottom: 40px; }
+      .profile-main-card-avatar { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 4px solid var(--white); margin-bottom: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+      .profile-main-card .name { font-size: 1.6rem; font-weight: 600; }
+      .profile-main-card .email { font-size: 1rem; color: var(--text-secondary); margin-top: 5px; }
+      
+      .info-section { margin-bottom: 40px; }
+      .section-title { font-size: 1.2rem; font-weight: 600; text-align: left; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); color: var(--accent-color); }
+
+      .info-grid .info-item { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid rgb(255 255 255);}
+      .info-grid .info-item:last-child { border-bottom: none; }
+      .info-item .label { color: var(--text-secondary); font-weight: 500; }
+      .info-item .value { font-weight: 500; text-align: right; word-break: break-word; }
+      .value .not-specified { color: var(--text-muted); font-style: italic; }
+      .page-footer { padding-bottom: 20px; }
+
+
+      @media (max-width: 992px) {
+        .info-section {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            border-bottom: none; 
+            padding-bottom: 0;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+        .page-main {
+            flex-direction: column;
+            padding-top: 20px;
+            gap: 20px; 
+        }
+
+        .profile-sidebar {
+            width: 100%;
+            overflow-x: auto;
+            -ms-overflow-style: none;
+        }
+        .profile-sidebar::-webkit-scrollbar { display: none; }
+        .sidebar-nav ul {
+            display: flex;
+            gap: 8px; 
+            width: max-content;
+            padding: 5px 0 15px 0;
+        }
+        .sidebar-nav li a {
+            padding: 10px 16px;
+            font-size: 0.9rem;
+            background-color: rgba(0,0,0,0.2);
+        }
+        .sidebar-nav li a.active {
+            background-color: var(--active-pill-bg); 
+            color: var(--text-primary);
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(83, 143, 251, 0.3);
+        }
+
+        .header-user-info { display: none; }
+        .notification-bell {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+        
+        .info-grid .info-item {
+            grid-template-columns: 1fr; 
+            gap: 6px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .info-item .label {
+            font-size: 0.75rem;
+            color: var(--text-muted); 
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+        .info-item .value {
+            text-align: left; 
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        
+        .profile-main-card-avatar { width: 90px; height: 90px; }
+        .profile-main-card .name { font-size: 1.5rem; }
+      }

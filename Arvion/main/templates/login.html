@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{% static 'CSS/login.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arvion - Մուտք</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    
+</head>
+<body>
+    <header class="page-header container">
+        <a href="{% url 'arvion' %}" class="logo">
+            <img src="{% static 'images/LogoIcon.png' %}" alt="Arvion Logo" class="logo-img"/>
+            <span data-key="brandName">Arvion</span>
+        </a>
+        <nav class="main-nav" id="main-nav">
+            <div class="nav-link-wrapper">
+                <a href="{% url 'arvion' %}" data-key="navHome" class="nav-link">Գլխավոր</a>
+                <a href="{% url 'about_project' %}" data-key="navAbout" class="nav-link">Նախագծի մասին</a>
+                <a href="{% url 'how_it_works' %}" data-key="navHowItWorks" class="nav-link">Ինչպես է աշխատում</a>
+            </div>
+            <a href="{% url 'login' %}" class="cta-button" data-key="navLogin">Մուտք / Գրանցում</a>
+        </nav>
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </header>
+
+    <main class="auth-section container">
+        <div class="form-wrapper">
+            <div class="form-container">
+                <h1 data-key="greeting">Ողջույն !</h1>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="{{ message.tags }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <div id="error-message-box"></div>
+                <form id="login-form" novalidate>
+                    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                    <div class="form-group">
+                        <label for="email" data-key="emailLabel">Էլ. հասցե</label>
+                        <input type="email" id="email" name="email" data-key-placeholder="emailPlaceholder" placeholder="Էլ. հասցե" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" data-key="passwordLabel">Գաղտնաբառ</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="password" name="password" data-key-placeholder="passwordPlaceholder" placeholder="Գաղտնաբառ" required/>
+                            <button type="button" class="toggle-password" aria-label="Toggle password visibility"><i class="fa-solid fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="forgot-password">
+                        <a href="#" data-key="forgotPassword">Մոռացե՞լ եք գաղտնաբառը</a>
+                    </div>
+                    <button type="submit" class="submit-btn" data-key="loginButton">Մուտք <i class="fa-solid fa-arrow-right" style="margin-left: 10px"></i></button>
+                </form>
+                <div class="register-link-wrapper">
+                    <span data-key="noAccount">Հաշիվ չունե՞ք։</span>
+                    <a href="{% url 'register' %}" data-key="registerButton">Գրանցվել</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="page-footer container">
+         <div class="footer-content">
+            <div class="footer-links">
+                <div class="language-selector-wrapper" id="language-selector">
+                    <i class="fa-solid fa-globe"></i>
+                    <span id="current-lang">Հայերեն</span>
+                    <i class="fa-solid fa-chevron-down fa-xs"></i>
+                    <div class="language-dropdown" id="language-dropdown">
+                        <a href="#" data-lang-code="hy" aria-label="Switch to Armenian">Հայերեն</a>
+                        <a href="#" data-lang-code="en" aria-label="Switch to English">English</a>
+                        <a href="#" data-lang-code="ru" aria-label="Switch to Russian">Русский</a>
+                    </div>
+                </div>
+                <a href="{% url 'terms_privacy' %}"><span data-key="footerTerms">Terms & privacy</span></a>
+                <a href="{% url 'security' %}"><span data-key="footerSecurity">Security</span></a>
+                <a href="{% url 'status' %}"><span data-key="footerStatus">Status</span></a>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const translations = {
+                hy: { greeting: "Ողջույն !", emailLabel: "Էլ. հասցե", passwordLabel: "Գաղտնաբառ", forgotPassword: "Մոռացե՞լ եք գաղտնաբառը", loginButton: "Մուտք", noAccount: "Հաշիվ չունե՞ք։", registerButton: "Գրանցվել", footerTerms: "Terms & privacy", footerSecurity: "Security", footerStatus: "Status", brandName: "Arvion", emailPlaceholder: "Էլ. հասցե", passwordPlaceholder: "Գաղտնաբառ", navHome: "Գլխավոր", navAbout: "Նախագծի մասին", navHowItWorks: "Ինչպես է աշխատում", navLogin: "Մուտք / Գրանցում"},
+                en: { greeting: "Welcome!", emailLabel: "Email Address", passwordLabel: "Password", forgotPassword: "Forgot your password?", loginButton: "Login", noAccount: "Don't have an account?", registerButton: "Sign Up", footerTerms: "Terms & privacy", footerSecurity: "Security", footerStatus: "Status", brandName: "Arvion", emailPlaceholder: "Email Address", passwordPlaceholder: "Password", navHome: "Home", navAbout: "About", navHowItWorks: "How it works", navLogin: "Login / Sign Up"},
+                ru: { greeting: "Добро пожаловать!", emailLabel: "Эл. адрес", passwordLabel: "Пароль", forgotPassword: "Забыли пароль?", loginButton: "Войти", noAccount: "Нет аккаунта?", registerButton: "Зарегистрироваться", footerTerms: "Условия и конфиденциальность", footerSecurity: "Безопасность", footerStatus: "Статус", brandName: "Arvion", emailPlaceholder: "Эл. адрес", passwordPlaceholder: "Пароль", navHome: "Главная", navAbout: "О проекте", navHowItWorks: "Как это работает", navLogin: "Вход / Регистрация"}
+            };
+            const setLanguage = (lang) => { const trans = translations[lang] || translations.hy; document.querySelectorAll("[data-key]").forEach(el => { const key = el.dataset.key; if (trans[key]) el.textContent = trans[key]; }); document.querySelectorAll("[data-key-placeholder]").forEach(el => { const key = el.dataset.keyPlaceholder; if (trans[key]) el.placeholder = trans[key]; }); const langName = document.querySelector(`.language-dropdown a[data-lang-code="${lang}"]`)?.textContent; if(langName) document.getElementById("current-lang").textContent = langName; localStorage.setItem("userLanguage", lang); };
+            const langSelector = document.getElementById("language-selector");
+            if(langSelector){ const langDropdown = document.getElementById("language-dropdown"); langSelector.addEventListener("click", (e) => { e.stopPropagation(); langDropdown.classList.toggle("show"); }); langDropdown.addEventListener("click", (e) => { e.preventDefault(); const langCode = e.target.closest("a")?.dataset.langCode; if(langCode){ setLanguage(langCode); langDropdown.classList.remove("show"); } }); window.addEventListener("click", () => { langDropdown.classList.remove("show"); }); setLanguage(localStorage.getItem("userLanguage") || "hy"); }
+
+            document.querySelectorAll('.toggle-password').forEach(button => {
+                button.addEventListener('click', () => {
+                    const passwordInput = button.closest('.password-input-wrapper').querySelector('input');
+                    const icon = button.querySelector('i');
+                    const isPassword = passwordInput.type === 'password';
+                    passwordInput.type = isPassword ? 'text' : 'password';
+                    icon.classList.toggle('fa-eye', !isPassword);
+                    icon.classList.toggle('fa-eye-slash', isPassword);
+                });
+            });
+            const loginForm = document.getElementById('login-form');
+            if (loginForm) {
+              loginForm.addEventListener('submit', async function(event) {
+                event.preventDefault();
+                const errorMessageBox = document.getElementById('error-message-box');
+                const messagesContainer = document.querySelector('.messages');
+                if (errorMessageBox) errorMessageBox.style.display = 'none';
+                if (messagesContainer) messagesContainer.style.display = 'none';
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const csrfToken = this.querySelector('input[name="csrfmiddlewaretoken"]').value;
+                try {
+                  const response = await fetch("{% url 'login_api_view' %}", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrfToken },
+                    body: JSON.stringify({ email: email, password: password })
+                  });
+                  const data = await response.json();
+                  if (response.ok) {
+                    window.location.href = data.redirect_url;
+                  } else {
+                    errorMessageBox.textContent = data.message || 'Տեղի ունեցավ անհայտ սխալ։';
+                    errorMessageBox.style.display = 'block';
+                  }
+                } catch (error) {
+                  errorMessageBox.textContent = 'Չհաջողվեց կապ հաստատել սերվերի հետ։';
+                  errorMessageBox.style.display = 'block';
+                }
+              });
+            }
+
+            const menuToggle = document.getElementById('mobile-menu-toggle');
+            const mainNav = document.getElementById('main-nav');
+
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', () => {
+                    const isOpened = mainNav.classList.toggle('mobile-nav-active');
+                    menuToggle.setAttribute('aria-expanded', isOpened);
+                    document.body.classList.toggle('menu-open', isOpened);
+
+                    const icon = menuToggle.querySelector('i');
+                    if (isOpened) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

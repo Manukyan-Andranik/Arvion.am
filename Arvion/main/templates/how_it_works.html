@@ -1,0 +1,360 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hy">
+  <head>
+    <meta charset="UTF-8" />
+    
+    <link rel="stylesheet" href="{% static 'CSS/how_it_works.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arvion - Ինչպես է աշխատում</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="header-content">
+        <a href="#" class="logo">
+          <img
+            src="{% static 'images/LogoIcon.png' %}"
+            alt="Arvion Logo"
+            class="logo-img"
+          />
+          <span>Arvion</span>
+        </a>
+        <button
+          class="menu-toggle"
+          id="menu-toggle-btn"
+          aria-label="Toggle Navigation"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <nav class="main-nav" id="main-nav-menu">
+          <div class="nav-links">
+            <a href="{% url 'arvion' %}" data-key="navHome" class="nav-link"
+              >Գլխավոր</a
+            >
+            <a
+              href="{% url 'about_project' %}"
+              data-key="navAbout"
+              class="nav-link"
+              >Նախագծի մասին
+            </a>
+            <a
+              href="{% url 'how_it_works' %}"
+              data-key="navHowItWorks"
+              class="nav-link"
+              >Ինչպես է աշխատում
+            </a>
+          </div>
+          <a
+            href="{% url 'login' %}"
+            class="cta-button nav-cta"
+            data-key="navLogin"
+            >Մուտք / Գրանցում</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="blue-section hero-section">
+        <div class="container section-intro">
+          <h1 data-key="pageTitle">Ձեր անվտանգությունը՝ պարզ քայլերով</h1>
+          <p data-key="pageSubtitle">
+            Arvion-ը նախագծված է պարզ և հասկանալի լինելու բոլորի համար՝ թե՛
+            նրանց, ովքեր ցանկանում են պաշտպանել իրենց, թե՛ բժիշկների, ում
+            առաքելությունը մարդկանց օգնելն է։
+          </p>
+        </div>
+        <svg
+          class="wavy-background"
+          viewBox="0 0 1440 162"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M1440 59.909C1226 26.0664 934.333 -40.5255 721 59.909C507.667 160.344 246.5 178.525 0 59.909V162H1440V59.909Z"
+            fill="#f8f9fa"
+          ></path>
+        </svg>
+      </section>
+
+      <section class="gray-section">
+        <div class="container">
+          <div class="section-intro">
+            <h2 data-key="individualsTitle">Անհատների համար</h2>
+            <p data-key="individualsSubtitle">
+              Ձեր անձնական անվտանգության քարտը Ձեր պաշտպանության առաջին գիծն է։
+              Այն ստեղծելը տևում է ընդամենը մի քանի րոպե։
+            </p>
+          </div>
+          <div class="steps-container">
+            <div class="step-card">
+              <div class="step-icon">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </div>
+              <div class="step-content" data-key-block="indStep1"></div>
+            </div>
+            <div class="step-card">
+              <div class="step-icon"><i class="fa-solid fa-id-card"></i></div>
+              <div class="step-content" data-key-block="indStep2"></div>
+            </div>
+            <div class="step-card">
+              <div class="step-icon"><i class="fa-solid fa-qrcode"></i></div>
+              <div class="step-content" data-key-block="indStep3"></div>
+            </div>
+            <div class="step-card">
+              <div class="step-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <div class="step-content" data-key-block="indStep4"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="blue-section">
+        <div class="container">
+          <div class="section-intro">
+            <h2 data-key="doctorsTitle">Բժիշկների համար</h2>
+            <p data-key="doctorsSubtitle">
+              Arvion-ը Ձեզ տալիս է անհրաժեշտ գործիքները՝ վայրկյանների ընթացքում
+              ճիշտ որոշումներ կայացնելու համար։
+            </p>
+          </div>
+          <div class="steps-container">
+            <div class="step-card">
+              <div class="step-icon">
+                <i class="fa-solid fa-user-doctor"></i>
+              </div>
+              <div class="step-content" data-key-block="docStep1"></div>
+            </div>
+            <div class="step-card">
+              <div class="step-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+              <div class="step-content" data-key-block="docStep2"></div>
+            </div>
+            <div class="step-card">
+              <div class="step-icon">
+                <i class="fa-solid fa-clipboard-list"></i>
+              </div>
+              <div class="step-content" data-key-block="docStep3"></div>
+            </div>
+          </div>
+          <div class="final-cta">
+            <p data-key="finalCtaText">
+              Պատրա՞ստ եք միանալու մեր առաքելությանը։
+            </p>
+            <a href="{% url 'login' %}" class="cta-button on-dark" data-key="finalCtaBtn"
+              >Միացիր մեզ / Գրանցվիր <i class="fa-solid fa-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <div class="footer-content">
+        <div class="footer-left">
+          <div class="language-switcher-container">
+            <a href="#" class="language-selector" id="language-selector"
+              ><i class="fa-solid fa-globe"></i>
+              <span id="current-lang-text">Հայերեն</span>
+              <i class="fa-solid fa-chevron-down fa-xs"></i
+            ></a>
+            <ul class="language-dropdown" id="language-dropdown">
+              <li><a href="#" data-lang-code="hy">Հայերեն</a></li>
+              <li><a href="#" data-lang-code="en">English</a></li>
+              <li><a href="#" data-lang-code="ru">Русский</a></li>
+            </ul>
+          </div>
+          <a href="{% url 'terms_privacy' %}" data-key="footerTerms">Terms & privacy</a>
+          <a href="{% url 'security' %}" data-key="footerSecurity">Security</a>
+          <a href="{% url 'status' %}" data-key="footerStatus">Status</a>
+        </div>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" aria-label="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+        </div>
+      </div>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuToggleBtn = document.getElementById("menu-toggle-btn");
+        const mainNavMenu = document.getElementById("main-nav-menu");
+
+        if (menuToggleBtn && mainNavMenu) {
+            menuToggleBtn.addEventListener("click", () => {
+                mainNavMenu.classList.toggle("active");
+                document.body.classList.toggle("noscroll");
+                const icon = menuToggleBtn.querySelector("i");
+                icon.classList.toggle("fa-bars");
+                icon.classList.toggle("fa-xmark");
+            });
+
+            mainNavMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mainNavMenu.classList.contains('active')) {
+                        mainNavMenu.classList.remove('active');
+                        document.body.classList.remove('noscroll');
+                        const icon = menuToggleBtn.querySelector("i");
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-xmark');
+                    }
+                });
+            });
+        }
+
+        const translations = {
+          hy: {
+            navHome: "Գլխավոր",
+            navAbout: "Նախագծի մասին",
+            navHowItWorks: "Ինչպես է աշխատում",
+            navLogin: "Մուտք / Գրանցում",
+            pageTitle: "Ձեր անվտանգությունը՝ պարզ քայլերով",
+            pageSubtitle:
+              "Arvion-ը նախագծված է պարզ և հասկանալի լինելու բոլորի համար՝ թե՛ նրանց, ովքեր ցանկանում են պաշտպանել իրենց, թե՛ բժիշկների, ում առաքելությունը մարդկանց օգնելն է։",
+            individualsTitle: "Անհատների համար",
+            individualsSubtitle:
+              "Ձեր անձնական անվտանգության քարտը Ձեր պաշտպանության առաջին գիծն է։ Այն ստեղծելը տևում է ընդամենը մի քանի րոպե։",
+            indStep1: `<h3>Արագ գրանցում</h3><p>Ստեղծե՛ք հաշիվ Ձեր էլեկտրոնային հասցեով։ Գործընթացը պարզ է և կարճ։</p>`,
+            indStep2: `<h3>Անվտանգության քարտի լրացում</h3><p>Սա ամենակարևոր քայլն է։ Ձեր էջում կարող եք ավելացնել անձնական, կենսական տվյալներ, ալերգիաներ և այլն։</p>`,
+            indStep3: `<h3>Ստացե՛ք Ձեր QR կոդը</h3><p>Էջը լրացնելուց հետո համակարգն ավտոմատ կստեղծի Ձեր QR կոդը։ Պահպանեք այն հեռախոսում կամ պատվիրեք ֆիզիկական քարտ։</p>`,
+            indStep4: `<h3>Եղե՛ք պաշտպանված</h3><p>Արտակարգ իրավիճակում բժիշկները կարող են սկանավորել Ձեր կոդը և անմիջապես ստանալ կյանք փրկող տեղեկատվություն։</p>`,
+            doctorsTitle: "Բժիշկների համար",
+            doctorsSubtitle:
+              "Arvion-ը Ձեզ տալիս է անհրաժեշտ գործիքները՝ վայրկյանների ընթացքում ճիշտ որոշումներ կայացնելու համար։",
+            docStep1: `<h3>Գրանցում և հաստատում</h3><p>Գրանցվեք և ներկայացրեք Ձեր մասնագիտական որակավորումը։ Մենք ստուգում ենք յուրաքանչյուր հայտ՝ անվտանգությունը երաշխավորելու համար։</p>`,
+            docStep2: `<h3>Գտե՛ք անհրաժեշտ անձին</h3><p>Հաստատումից հետո ստացե՛ք մուտք դեպի որոնման համակարգ։ Գտե՛ք մարդուն QR կոդով, անունով կամ դեմքի ճանաչմամբ։</p>`,
+            docStep3: `<h3>Դիտե՛ք կենսական տվյալները</h3><p>Հաջող որոնումից հետո անմիջապես կտեսնեք անձի ամբողջական, հստակ կառուցվածքով էջը՝ խուսափելով սխալներից։</p>`,
+            finalCtaText: "Պատրա՞ստ եք միանալու մեր առաքելությանը։",
+            finalCtaBtn: "Միացիր մեզ / Գրանցվիր",
+            footerTerms: "Terms & privacy",
+            footerSecurity: "Security",
+            footerStatus: "Status",
+          },
+          en: {
+            navHome: "Home",
+            navAbout: "About Project",
+            navHowItWorks: "How It Works",
+            navLogin: "Login / Sign Up",
+            pageTitle: "Your Security in Simple Steps",
+            pageSubtitle:
+              "Arvion is designed to be simple for everyone: both for those who want to protect themselves, and for doctors whose mission is to help people.",
+            individualsTitle: "For Individuals",
+            individualsSubtitle:
+              "Your personal security card is your first line of defense. Creating it takes just a few minutes.",
+            indStep1: `<h3>Quick Registration</h3><p>Create an account with your email address. The process is simple and short.</p>`,
+            indStep2: `<h3>Fill Out Security Card</h3><p>This is the most crucial step. In your profile, you can add personal data, vital info, allergies, and more.</p>`,
+            indStep3: `<h3>Get Your QR Code</h3><p>After completing your profile, the system will auto-generate your QR code. Save it on your phone or order a physical card.</p>`,
+            indStep4: `<h3>Be Protected</h3><p>In an emergency, doctors can scan your code and instantly receive life-saving information.</p>`,
+            doctorsTitle: "For Doctors",
+            doctorsSubtitle:
+              "Arvion gives you the necessary tools to make the right decisions in seconds.",
+            docStep1: `<h3>Registration & Verification</h3><p>Register and submit your professional credentials. We verify every application to ensure system security.</p>`,
+            docStep2: `<h3>Find the Person in Need</h3><p>Once verified, you get access to the search system. Find a person by QR code, name, or facial recognition.</p>`,
+            docStep3: `<h3>View Vital Data</h3><p>After a successful search, you will immediately see a person's complete, clearly structured profile, helping you avoid mistakes.</p>`,
+            finalCtaText: "Ready to join our mission?",
+            finalCtaBtn: "Join Us / Sign Up",
+            footerTerms: "Terms & privacy",
+            footerSecurity: "Security",
+            footerStatus: "Status",
+          },
+          ru: {
+            navHome: "Главная",
+            navAbout: "О проекте",
+            navHowItWorks: "Как это работает",
+            navLogin: "Вход / Регистрация",
+            pageTitle: "Ваша безопасность в простых шагах",
+            pageSubtitle:
+              "Arvion разработан так, чтобы быть простым и понятным для всех: как для тех, кто хочет защитить себя, так и для врачей, чья миссия — помогать людям.",
+            individualsTitle: "Для частных лиц",
+            individualsSubtitle:
+              "Ваша личная карта безопасности — это ваша первая линия защиты. Ее создание занимает всего несколько минут.",
+            indStep1: `<h3>Быстрая регистрация</h3><p>Создайте аккаунт с помощью вашего email. Процесс прост и короток.</p>`,
+            indStep2: `<h3>Заполнение карты безопасности</h3><p>Это самый важный шаг. В своем профиле вы можете добавить личные и жизненно важные данные, аллергии, и др.</p>`,
+            indStep3: `<h3>Получите ваш QR-код</h3><p>После заполнения профиля система автоматически сгенерирует QR-код. Сохраните его на телефоне или закажите физическую карту.</p>`,
+            indStep4: `<h3>Будьте защищены</h3><p>В чрезвычайной ситуации врачи могут отсканировать ваш код и немедленно получить жизненно важную информацию.</p>`,
+            doctorsTitle: "Для врачей",
+            doctorsSubtitle:
+              "Arvion предоставляет вам необходимые инструменты для принятия правильных решений за считанные секунды.",
+            docStep1: `<h3>Регистрация и верификация</h3><p>Зарегистрируйтесь и предоставьте вашу профессиональную квалификацию. Мы проверяем каждую заявку для обеспечения безопасности системы.</p>`,
+            docStep2: `<h3>Найдите нужного человека</h3><p>После верификации получите доступ к системе поиска. Найдите человека по QR-коду, имени или распознаванию лица.</p>`,
+            docStep3: `<h3>Просмотр жизненно важных данных</h3><p>После успешного поиска вы сразу увидите полный, четко структурированный профиль человека, что поможет избежать ошибок.</p>`,
+            finalCtaText: "Готовы присоединиться к нашей миссии?",
+            finalCtaBtn: "Присоединяйтесь / Регистрация",
+            footerTerms: "Условия и конфиденциальность",
+            footerSecurity: "Безопасность",
+            footerStatus: "Статус",
+          },
+        };
+
+        const setLanguage = (lang) => {
+          const defaultLang = "hy";
+          Object.keys(translations[defaultLang]).forEach((key) => {
+            if (key.startsWith("indStep") || key.startsWith("docStep")) {
+              const element = document.querySelector(
+                `[data-key-block="${key}"]`
+              );
+              if (element)
+                element.innerHTML =
+                  translations[lang]?.[key] || translations[defaultLang][key];
+            } else {
+              document.querySelectorAll(`[data-key="${key}"]`).forEach((el) => {
+                let translation =
+                  translations[lang]?.[key] || translations[defaultLang][key];
+                let icon = el.querySelector("i");
+                el.innerHTML = translation;
+                if (icon) {
+                  el.appendChild(document.createTextNode(" "));
+                  el.appendChild(icon);
+                }
+              });
+            }
+          });
+          document.documentElement.lang = lang;
+          document.getElementById("current-lang-text").textContent =
+            document.querySelector(
+              `.language-dropdown a[data-lang-code="${lang}"]`
+            ).textContent;
+          localStorage.setItem("userLanguage", lang);
+        };
+
+        const langSelector = document.getElementById("language-selector");
+        const langDropdown = document.getElementById("language-dropdown");
+        langSelector.addEventListener("click", (e) => {
+          e.preventDefault();
+          langDropdown.classList.toggle("show");
+        });
+        langDropdown.addEventListener("click", (e) => {
+          const langCode =
+            e.target.closest("[data-lang-code]")?.dataset.langCode;
+          if (langCode) {
+            e.preventDefault();
+            setLanguage(langCode);
+            langDropdown.classList.remove("show");
+          }
+        });
+        window.addEventListener("click", (e) => {
+          if (
+            !langSelector.contains(e.target) &&
+            !langDropdown.contains(e.target)
+          )
+            langDropdown.classList.remove("show");
+        });
+
+        setLanguage(localStorage.getItem("userLanguage") || "hy");
+      });
+    </script>
+  </body>
+</html>

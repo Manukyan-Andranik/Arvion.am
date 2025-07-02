@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{% static 'CSS/settings.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Կարգավորումներ - Arvion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+</head>
+<body>
+    <header class="page-header container">
+      <a href="{% url 'arvion' %}" class="logo"><img src="{% static 'images/LogoIcon.png' %}" alt="Arvion Logo" class="logo-img"/><span>Arvion</span></a>
+      <div class="header-user"><img src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% else %}{% static 'images/default_avatar.png' %}{% endif %}" alt="User Avatar" class="header-user-avatar"></div>
+    </header>
+
+<main class="page-main container">
+  <aside class="profile-sidebar">
+      <nav class="sidebar-nav">
+          <ul>
+              <li><a href="{% url 'profile' %}"><i class="fa-solid fa-user-circle"></i> Իմ Պրոֆիլը</a></li>
+              <li><a href="{% url 'settings' %}" class="active"><i class="fa-solid fa-gear"></i> Կարգավորումներ</a></li>
+              <li><a href="{% url 'logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Ելք</a></li>
+          </ul>
+      </nav>
+  </aside>
+
+  <section class="profile-content">
+      <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="profile-main-card">
+              <img id="image-preview" src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% else %}{% static 'images/default_avatar.png' %}{% endif %}" alt="Profile Picture" class="profile-main-card-avatar">
+              <label for="id_profile_picture">Փոխել նկարը / Change Photo</label>
+              <input type="file" name="profile_picture" id="id_profile_picture" accept="image/*">
+          </div>
+
+          {% if messages %}<ul class="messages">{% for message in messages %}<li class="{{ message.tags }}">{{ message }}</li>{% endfor %}</ul>{% endif %}
+
+          <div class="form-section">
+              <h2 class="form-section-title">Անձնական և կոնտակտային տվյալներ</h2>
+              <div class="form-grid">
+                  <div class="form-group" style="margin-top:0;"><label for="id_first_name">Անուն</label><input type="text" id="id_first_name" name="first_name" class="form-input" value="{{ user.first_name|default_if_none:'' }}"></div>
+                  <div class="form-group" style="margin-top:0;"><label for="id_last_name">Ազգանուն</label><input type="text" id="id_last_name" name="last_name" class="form-input" value="{{ user.last_name|default_if_none:'' }}"></div>
+                  <div class="form-group" style="margin-top:0;"><label for="id_date_of_birth">Ծննդյան ամսաթիվ</label><input type="date" id="id_date_of_birth" name="date_of_birth" class="form-input" value="{{ user.date_of_birth|date:'Y-m-d' }}"></div>
+                  <div class="form-group" style="margin-top:0;">
+                      <label for="id_gender">Սեռ</label>
+                      <select name="gender" id="id_gender" class="form-select">
+                          <option value="">Ընտրել...</option>
+                          {% for gender in all_genders %}
+                            <option value="{{ gender.id }}" {% if user.gender.id == gender.id %}selected{% endif %}>{{ gender.name }}</option>
+                          {% endfor %}
+                      </select>
+                  </div>
+                  <div class="form-group" style="margin-top:0;"><label for="id_phone_number">Հեռախոսահամար</label><input type="tel" id="id_phone_number" name="phone_number" class="form-input" value="{{ user.phone_number|default_if_none:'' }}"></div>
+                  <div class="form-group" style="margin-top:0;"><label for="id_emergency_contact_phone">Վստահված անձի հեռ.</label><input type="tel" id="id_emergency_contact_phone" name="emergency_contact_phone" class="form-input" value="{{ user.emergency_contact_phone|default_if_none:'' }}"></div>
+              </div>
+              <div class="form-group"><label for="id_address">Բնակության հասցե</label><input type="text" id="id_address" name="address" class="form-input" value="{{ user.address|default_if_none:'' }}"></div>
+          </div>
+          {% if user.patient_profile %}
+          <div class="form-section">
+              <h2 class="form-section-title">Բժշկական տվյալներ</h2>
+              <div class="form-grid">
+                  <div class="form-group" style="margin-top:0;">
+                      <label for="id_blood_group">Արյան խումբ</label>
+                      <select name="blood_group" id="id_blood_group" class="form-select">
+                          <option value="">Ընտրել...</option>
+                          {% for bg in all_blood_groups %}
+                          <option value="{{ bg.id }}" {% if user.patient_profile.blood_group.id == bg.id %}selected{% endif %}>{{ bg.group_name }}</option>
+                          {% endfor %}
+                      </select>
+                  </div>
+                  <div class="form-group" style="margin-top:0;"><label for="id_weight_kg">Քաշ (կգ)</label><input type="number" step="0.1" id="id_weight_kg" name="weight_kg" class="form-input" value="{{ user.patient_profile.weight_kg|stringformat:'.2f'|default_if_none:'' }}" placeholder="Օր.՝ 75.50"></div>
+                  <div class="form-group" style="margin-top:0;"><label for="id_height_cm">Հասակ (սմ)</label><input type="number" step="0.1" id="id_height_cm" name="height_cm" class="form-input" value="{{ user.patient_profile.height_cm|stringformat:'.2f'|default_if_none:'' }}" placeholder="Օր.՝ 180.0"></div>
+              </div>
+              <div class="form-group"><label for="allergies_text">Ալերգիաներ / Allergies</label><small>Թվարկեք՝ բաժանելով ստորակետով</small><textarea name="allergies_text" id="allergies_text" class="form-textarea" placeholder="Օր.՝ Փոշի, Ծաղկափոշի, Պենիցիլին">{{ p_allergies_str|default_if_none:'' }}</textarea></div>
+              <div class="form-group"><label for="conditions_text">Հիվանդություններ / Conditions</label><small>Թվարկեք՝ բաժանելով ստորակետով</small><textarea name="conditions_text" id="conditions_text" class="form-textarea" placeholder="Օր.՝ Դիաբետ, Ասթմա">{{ p_conditions_str|default_if_none:'' }}</textarea></div>
+              <div class="form-group"><label for="medications_text">Ընդունվող դեղամիջոցներ / Medications</label><small>Թվարկեք՝ բաժանելով ստորակետով</small><textarea name="medications_text" id="medications_text" class="form-textarea" placeholder="Օր.՝ Ասպիրին, Պարացետամոլ">{{ p_medications_str|default_if_none:'' }}</textarea></div>
+              <div class="form-group"><label for="surgeries_text">Վիրահատություններ / Surgeries</label><small>Թվարկեք՝ բաժանելով ստորակետով</small><textarea name="surgeries_text" id="surgeries_text" class="form-textarea" placeholder="Օր.՝ Ապենդիցիտ, Տոնզիլէկտոմիա">{{ p_surgeries_str|default_if_none:'' }}</textarea></div>
+              <div class="form-group"><label for="id_other_notes">Այլ նշումներ / Other Notes</label><textarea name="other_notes" id="id_other_notes" class="form-textarea">{{ user.patient_profile.other_notes|default_if_none:'' }}</textarea></div>
+          </div>
+          {% endif %}
+          {% if user.doctor_profile %}
+          <div class="form-section">
+              <h2 class="form-section-title">Մասնագիտական տվյալներ</h2>
+              <div class="form-grid">
+                  <div class="form-group" style="margin-top:0;">
+                      <label for="id_specialty">Մասնագիտություն</label>
+                      <input type="text" id="id_specialty" name="specialty" class="form-input" value="{{ user.doctor_profile.specialty|default_if_none:'' }}" placeholder="Օր.՝ Սրտաբան">
+                  </div>
+                  <div class="form-group" style="margin-top:0;">
+                      <label for="id_license_number">Բժշկական լիցենզիայի համար</label>
+                      <input type="text" id="id_license_number" name="license_number" class="form-input" value="{{ user.doctor_profile.license_number|default_if_none:'' }}">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="id_workplace">Աշխատավայր</label>
+                  <input type="text" id="id_workplace" name="workplace" class="form-input" value="{{ user.doctor_profile.workplace|default_if_none:'' }}" placeholder="Օր.՝ «Աստղիկ» բժշկական կենտրոն">
+              </div>
+              <div class="form-group">
+                  <label for="id_biography">Իմ մասին / Biography</label>
+                  <textarea name="biography" id="id_biography" class="form-textarea" placeholder="Ներկայացրեք Ձեր փորձը, կրթությունը և մոտեցումները...">{{ user.doctor_profile.biography|default_if_none:'' }}</textarea>
+              </div>
+          </div>
+          {% endif %}
+
+          <div class="form-actions">
+              <button type="reset" class="btn-secondary">Չեղարկել</button>
+              <button type="submit" class="btn-primary">Պահպանել</button>
+          </div>
+      </form>
+  </section>
+</main>
+
+<script>
+    document.getElementById('id_profile_picture')?.addEventListener('change', function(e) { if (e.target.files && e.target.files[0]) { const preview = document.getElementById('image-preview'); preview.src = URL.createObjectURL(e.target.files[0]); preview.onload = () => URL.revokeObjectURL(preview.src); } });
+</script>
+
+</body>
+</html>

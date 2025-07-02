@@ -1,0 +1,256 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hy">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{% static 'CSS/status.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arvion - Կարգավիճակ</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="container header-content">
+        <a href="{% url 'arvion' %}" class="logo">
+          <img
+            src="{% static 'images/LogoIcon.png' %}"
+            alt="Arvion Logo"
+            class="logo-img"
+          />
+          <span data-key="logoText">Arvion</span>
+        </a>
+        <nav class="desktop-nav">
+          <ul class="desktop-nav-links">
+            <li><a href="{% url 'arvion' %}" data-key="navHome"></a></li>
+            <li><a href="{% url 'about_project' %}" data-key="navAbout"></a></li>
+            <li><a href="{% url 'how_it_works' %}" data-key="navHowItWorks"></a></li>
+          </ul>
+          <a href="{% url 'login' %}" class="btn btn-yellow" data-key="navLogin"></a>
+        </nav>
+        <button class="menu-toggle" id="menu-toggle-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobile-nav-menu">
+      <ul class="mobile-nav-links">
+        <li><a href="{% url 'arvion' %}" data-key="navHome"></a></li>
+        <li><a href="{% url 'about_project' %}" data-key="navAbout"></a></li>
+        <li><a href="{% url 'how_it_works' %}" data-key="navHowItWorks"></a></li>
+      </ul>
+      <a href="{% url 'login' %}" class="btn btn-yellow" data-key="navLogin"></a>
+    </nav>
+
+    <main>
+      <div class="content-card-wrapper">
+        <div class="container">
+          <section class="text-content-section">
+            <div class="main-status-container">
+                <p class="main-status-text">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span data-key="mainStatus"></span>
+                </p>
+            </div>
+            
+            <div class="status-list-container">
+                <div class="status-item">
+                    <span class="status-item-name" data-key="componentWebsiteName"></span>
+                    <span class="status-indicator">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span data-key="componentStatusOk"></span>
+                    </span>
+                </div>
+                <div class="status-item">
+                    <span class="status-item-name" data-key="componentAuthName"></span>
+                    <span class="status-indicator">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span data-key="componentStatusOk"></span>
+                    </span>
+                </div>
+                <div class="status-item">
+                    <span class="status-item-name" data-key="componentDbName"></span>
+                    <span class="status-indicator">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span data-key="componentStatusOk"></span>
+                    </span>
+                </div>
+                <div class="status-item">
+                    <span class="status-item-name" data-key="componentSearchName"></span>
+                    <span class="status-indicator">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span data-key="componentStatusOk"></span>
+                    </span>
+                </div>
+                <div class="status-item">
+                    <span class="status-item-name" data-key="componentQrNfcName"></span>
+                    <span class="status-indicator">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span data-key="componentStatusOk"></span>
+                    </span>
+                </div>
+            </div>
+
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="page-footer">
+      <div class="container footer-content">
+        <div class="footer-links">
+          <div class="language-switcher-container">
+            <a href="#" class="language-selector" id="language-selector">
+              <i class="fa-solid fa-globe"></i>
+              <span id="current-lang">Հայերեն</span>
+              <i class="fa-solid fa-chevron-down fa-xs"></i>
+            </a>
+            <div class="language-dropdown" id="language-dropdown">
+              <a href="#" data-lang-code="hy">Հայերեն</a>
+              <a href="#" data-lang-code="en">English</a>
+              <a href="#" data-lang-code="ru">Русский</a>
+            </div>
+          </div>
+          <a href="{% url 'terms_privacy' %}"><span data-key="footerTerms"></span></a>
+          <a href="{% url 'security' %}"><span data-key="footerSecurity"></span></a>
+          <a href="{% url 'status' %}"><span data-key="footerStatus"></span></a>
+        </div>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+        </div>
+      </div>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuToggleBtn = document.getElementById("menu-toggle-btn");
+        const mobileNavMenu = document.getElementById("mobile-nav-menu");
+        const langSelector = document.getElementById("language-selector");
+        const langDropdown = document.getElementById("language-dropdown");
+
+        const translations = {
+          hy: {
+            docTitle: "Arvion - Կարգավիճակ",
+            logoText: "Arvion",
+            navHome: "Գլխավոր",
+            navAbout: "Նախագծի մասին",
+            navHowItWorks: "Ինչպես է աշխատում",
+            navLogin: "Մուտք / Գրանցում",
+            mainStatus: "Բոլոր համակարգերը գործում են բնականոն",
+            componentWebsiteName: "Գլխավոր կայք և էջեր",
+            componentAuthName: "Օգտատերերի գրանցում և մուտք",
+            componentDbName: "Տվյալների բազա",
+            componentSearchName: "Որոնման համակարգ (բժիշկների համար)",
+            componentQrNfcName: "QR/NFC տվյալների հասանելիություն",
+            componentStatusOk: "Գործում է",
+            footerTerms: "Պայմաններ և գաղտնիություն",
+            footerSecurity: "Անվտանգություն",
+            footerStatus: "Կարգավիճակ"
+          },
+          en: {
+            docTitle: "Arvion - System Status",
+            logoText: "Arvion",
+            navHome: "Home",
+            navAbout: "About Project",
+            navHowItWorks: "How It Works",
+            navLogin: "Login / Sign Up",
+            mainStatus: "All systems are operational",
+            componentWebsiteName: "Main Website & Pages",
+            componentAuthName: "User Registration & Login",
+            componentDbName: "Database",
+            componentSearchName: "Search System (for Doctors)",
+            componentQrNfcName: "QR/NFC Data Access",
+            componentStatusOk: "Operational",
+            footerTerms: "Terms & Privacy",
+            footerSecurity: "Security",
+            footerStatus: "Status"
+          },
+          ru: {
+            docTitle: "Arvion - Статус Системы",
+            logoText: "Arvion",
+            navHome: "Главная",
+            navAbout: "О проекте",
+            navHowItWorks: "Как это работает",
+            navLogin: "Вход / Регистрация",
+            mainStatus: "Все системы работают в штатном режиме",
+            componentWebsiteName: "Основной сайт и страницы",
+            componentAuthName: "Регистрация и вход пользователей",
+            componentDbName: "База данных",
+            componentSearchName: "Система поиска (для врачей)",
+            componentQrNfcName: "Доступ к данным по QR/NFC",
+            componentStatusOk: "Работает",
+            footerTerms: "Условия и конфиденциальность",
+            footerSecurity: "Безопасность",
+            footerStatus: "Статус"
+          }
+        };
+
+        const icon = menuToggleBtn.querySelector("i");
+        const closeMobileMenu = () => {
+          mobileNavMenu.classList.remove("active");
+          icon.classList.remove("fa-times");
+          icon.classList.add("fa-bars");
+        };
+        menuToggleBtn.addEventListener("click", (event) => {
+          event.stopPropagation();
+          const isActive = mobileNavMenu.classList.toggle("active");
+          icon.classList.toggle("fa-bars", !isActive);
+          icon.classList.toggle("fa-times", isActive);
+        });
+        
+        mobileNavMenu.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMobileMenu));
+
+        const setLanguage = (lang) => {
+          if (!translations[lang]) return;
+          const t = translations[lang];
+
+          document.querySelectorAll("[data-key]").forEach((element) => {
+            const key = element.getAttribute("data-key");
+            if (t[key] !== undefined) {
+              element.innerHTML = t[key];
+            }
+          });
+          document.documentElement.lang = lang;
+          document.title = t.docTitle;
+          document.getElementById("current-lang").textContent = langDropdown.querySelector(`a[data-lang-code="${lang}"]`).textContent;
+          localStorage.setItem("userLanguage", lang);
+        };
+
+        langSelector.addEventListener("click", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          langDropdown.classList.toggle("show");
+        });
+
+        langDropdown.addEventListener("click", (event) => {
+          event.preventDefault();
+          const langLink = event.target.closest("[data-lang-code]");
+          if (langLink) {
+            setLanguage(langLink.getAttribute("data-lang-code"));
+            langDropdown.classList.remove("show");
+          }
+        });
+
+        document.body.addEventListener("click", (event) => {
+          if (menuToggleBtn && !menuToggleBtn.contains(event.target) && !mobileNavMenu.contains(event.target)) {
+            closeMobileMenu();
+          }
+          if (langSelector && !langSelector.contains(event.target)) {
+            langDropdown.classList.remove("show");
+          }
+        });
+
+        mobileNavMenu.addEventListener("click", (e) => e.stopPropagation());
+        langDropdown.addEventListener("click", (e) => e.stopPropagation());
+
+        const savedLang = localStorage.getItem("userLanguage") || "hy";
+        setLanguage(savedLang);
+      });
+    </script>
+  </body>
+</html>

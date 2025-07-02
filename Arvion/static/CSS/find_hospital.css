@@ -1,0 +1,60 @@
+      :root {
+        --primary-bg: #043873;
+        --secondary-bg: #0a2a54;
+        --card-bg: #0c3061;
+        --text-primary: #ffffff;
+        --text-secondary: #c0c8d4;
+        --border-color: rgba(255, 255, 255, 0.1);
+        --accent-color: #58a6ff;
+        --text-muted: #8d9bb0;
+        --active-pill-bg: #538ffb;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--primary-bg); color: var(--text-primary);
+        display: flex; flex-direction: column; min-height: 100vh;
+      }
+      .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+      .page-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
+      .logo { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 700; color: var(--text-primary); text-decoration: none; }
+      .logo-img { height: 32px; }
+      .header-actions { display: flex; align-items: center; gap: 15px; }
+      .header-user-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--white); }
+      .page-main { display: flex; width: 100%; padding-top: 30px; gap: 40px; }
+      .profile-sidebar { width: 260px; flex-shrink: 0; }
+      .sidebar-nav ul { list-style: none; padding: 0; }
+      .sidebar-nav li a { display: flex; align-items: center; gap: 15px; padding: 14px; color: var(--text-secondary); text-decoration: none; border-radius: 8px; font-weight: 500; transition: all 0.2s; white-space: nowrap; }
+      .sidebar-nav li a:hover { background-color: var(--secondary-bg); color: var(--white); }
+      .sidebar-nav li a.active { background-color: var(--secondary-bg); color: var(--white); }
+      .sidebar-nav li a i { width: 20px; text-align: center; }
+      .profile-content { flex-grow: 1; }
+      
+      .map-container {
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        padding: 20px;
+        border: 1px solid var(--border-color);
+      }
+      #map {
+        width: 100%;
+        height: 65vh;
+        border-radius: 8px;
+        background-color: #e5e3df;
+      }
+      .map-status {
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        background-color: var(--secondary-bg);
+        text-align: center;
+        font-weight: 500;
+      }
+      .map-status i { margin-right: 10px; }
+
+      @media (max-width: 992px) {
+        .page-main { flex-direction: column; }
+        .profile-sidebar { width: 100%; overflow-x: auto; }
+        .sidebar-nav ul { display: flex; width: max-content; }
+        #map { height: 60vh; }
+      }

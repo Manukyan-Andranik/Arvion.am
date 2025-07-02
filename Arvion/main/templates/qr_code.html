@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{% static 'CSS/qr_code.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Իմ QR Կոդը - Arvion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    
+</head>
+<body>
+    <header class="page-header container">
+      <a href="{% url 'arvion' %}" class="logo"><img src="{% static 'images/LogoIcon.png' %}" alt="Arvion Logo" class="logo-img" /><span>Arvion</span></a>
+      <div><a href="{% url 'profile' %}"><img src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% else %}{% static 'images/default_avatar.png' %}{% endif %}" alt="User Avatar" class="header-user-avatar" /></a></div>
+    </header>
+    <main class="page-main container">
+      <aside class="profile-sidebar">
+        <nav class="sidebar-nav">
+          <ul>
+            <li><a href="{% url 'profile' %}"><i class="fa-solid fa-user-circle"></i> Իմ Պրոֆիլը</a></li>
+            <li><a href="{% url 'qr_code' %}" class="active"><i class="fa-solid fa-qrcode"></i> Իմ QR կոդը</a></li>
+            <li><a href="{% url 'settings' %}"><i class="fa-solid fa-gear"></i> Կարգավորումներ</a></li>
+            <li><a href="{% url 'logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Ելք</a></li>
+          </ul>
+        </nav>
+      </aside>
+      <section class="profile-content">
+        <div class="qr-card">
+            <h2 class="section-title">Ձեր հանրային պրոֆիլի QR կոդը</h2>
+            <p class="qr-description">Սկանավորեք այս կոդը՝ ձեր հանրային էջը բացելու համար։ Այն կարող եք տրամադրել բժիշկներին կամ արտակարգ իրավիճակներում։</p>
+            <div class="qr-image-container">
+                <img src="{{ qr_image_data_uri }}" alt="Arvion QR Code">
+            </div><br>
+            <a href="{{ qr_image_data_uri }}" class="btn-primary" download="arvion-qr-code-{{ user.username }}.png"><i class="fa-solid fa-download"></i> Ներբեռնել</a>
+        </div>
+      </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,353 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hy">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{% static 'CSS/terms_privacy.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arvion - Պայմաններ և Գաղտնիություն</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="container header-content">
+        <a href="{% url 'arvion' %}" class="logo">
+          <img
+            src="{% static 'images/LogoIcon.png' %}"
+            alt="Arvion Logo"
+            class="logo-img"
+          />
+          <span data-key="logoText">Arvion</span>
+        </a>
+        <nav class="desktop-nav">
+          <ul class="desktop-nav-links">
+            <li><a href="{% url 'arvion' %}" data-key="navHome"></a></li>
+            <li><a href="{% url 'about_project' %}" data-key="navAbout"></a></li>
+            <li><a href="{% url 'how_it_works' %}" data-key="navHowItWorks"></a></li>
+          </ul>
+          <a href="{% url 'login' %}" class="btn btn-yellow" data-key="navLogin"></a>
+        </nav>
+        <button class="menu-toggle" id="menu-toggle-btn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobile-nav-menu">
+      <ul class="mobile-nav-links">
+        <li><a href="{% url 'arvion' %}" data-key="navHome"></a></li>
+        <li><a href="{% url 'about_project' %}" data-key="navAbout"></a></li>
+        <li><a href="{% url 'how_it_works' %}" data-key="navHowItWorks"></a></li>
+      </ul>
+      <a href="{% url 'login' %}" class="btn btn-yellow" data-key="navLogin"></a>
+    </nav>
+
+    <main>
+      <div class="content-card-wrapper">
+        <div class="container">
+          <section class="text-content-section">
+            <h1 data-key="pageTitle"></h1>
+            <p data-key="welcomeText"></p>
+            
+            <div class="separator">
+              <hr />
+              <i class="fa-solid fa-file-contract"></i>
+              <hr />
+            </div>
+
+            <h2 data-key="termsTitle"></h2>
+            
+            <h3 data-key="termsSection1Title"></h3>
+            <p><strong>1.1.</strong> <span data-key="termsPoint1_1"></span></p>
+            <p><strong>1.2.</strong> <span data-key="termsPoint1_2"></span></p>
+
+            <h3 data-key="termsSection2Title"></h3>
+            <p><strong>2.1.</strong> <span data-key="termsPoint2_1"></span></p>
+            <p><strong>2.2.</strong> <span data-key="termsPoint2_2"></span></p>
+            <p><strong>2.3.</strong> <span data-key="termsPoint2_3"></span></p>
+
+            <h3 data-key="termsSection3Title"></h3>
+            <p><strong>3.1.</strong> <span data-key="termsPoint3_1"></span></p>
+            <p><strong>3.2.</strong> <span data-key="termsPoint3_2"></span></p>
+            <p><strong>3.3.</strong> <span data-key="termsPoint3_3"></span></p>
+            
+            <div class="separator">
+              <hr />
+              <i class="fa-solid fa-file-shield"></i>
+              <hr />
+            </div>
+
+            <h2 data-key="privacyTitle"></h2>
+            <p data-key="privacyIntro"></p>
+
+            <h3 data-key="privacySection1Title"></h3>
+            <p data-key="privacyDataCollectionIntro"></p>
+            <ul>
+              <li><strong data-key="privacyData1_title"></strong> <span data-key="privacyData1_desc"></span></li>
+              <li><strong data-key="privacyData2_title"></strong> <span data-key="privacyData2_desc"></span></li>
+              <li><strong data-key="privacyData3_title"></strong> <span data-key="privacyData3_desc"></span></li>
+            </ul>
+
+            <h3 data-key="privacySection2Title"></h3>
+            <p data-key="privacyUsageIntro"></p>
+            <ul>
+              <li data-key="privacyUsage1"></li>
+              <li data-key="privacyUsage2"></li>
+              <li data-key="privacyUsage3"></li>
+            </ul>
+
+            <h3 data-key="privacySection3Title"></h3>
+            <p data-key="privacySharingIntro"></p>
+            <ul>
+              <li data-key="privacySharing1"></li>
+              <li data-key="privacySharing2"></li>
+            </ul>
+            
+            <h3 data-key="privacySection4Title"></h3>
+            <p data-key="privacyRights"></p>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="page-footer">
+      <div class="container footer-content">
+        <div class="footer-links">
+          <div class="language-switcher-container">
+            <a href="#" class="language-selector" id="language-selector">
+              <i class="fa-solid fa-globe"></i>
+              <span id="current-lang">Հայերեն</span>
+              <i class="fa-solid fa-chevron-down fa-xs"></i>
+            </a>
+            <div class="language-dropdown" id="language-dropdown">
+              <a href="#" data-lang-code="hy">Հայերեն</a>
+              <a href="#" data-lang-code="en">English</a>
+              <a href="#" data-lang-code="ru">Русский</a>
+            </div>
+          </div>
+          <a href="{% url 'terms_privacy' %}"><span data-key="footerTerms"></span></a>
+          <a href="{% url 'security' %}"><span data-key="footerSecurity"></span></a>
+          <a href="{% url 'status' %}"><span data-key="footerStatus"></span></a>
+        </div>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+        </div>
+      </div>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuToggleBtn = document.getElementById("menu-toggle-btn");
+        const mobileNavMenu = document.getElementById("mobile-nav-menu");
+        const langSelector = document.getElementById("language-selector");
+        const langDropdown = document.getElementById("language-dropdown");
+
+        const translations = {
+          hy: {
+            docTitle: "Arvion - Պայմաններ և Գաղտնիություն",
+            logoText: "Arvion",
+            navHome: "Գլխավոր",
+            navAbout: "Նախագծի մասին",
+            navHowItWorks: "Ինչպես է աշխատում",
+            navLogin: "Մուտք / Գրանցում",
+            pageTitle: "Պայմաններ և Գաղտնիություն",
+            welcomeText: "Բարի գալուստ Arvion։ Օգտվելով մեր ծառայություններից՝ Դուք համաձայնում եք ստորև ներկայացված պայմաններին և քաղաքականությանը։ Խնդրում ենք ուշադիր ընթերցել այս փաստաթուղթը։",
+            termsTitle: "Ա. Օգտագործման Պայմաններ",
+            termsSection1Title: "1. Ընդհանուր դրույթներ",
+            termsPoint1_1: "Arvion ծառայությունը (այսուհետ՝ «Ծառայություն») նախատեսված է օգտատերերի (այսուհետ՝ «Դուք», «Օգտատեր») կողմից անձնական և բժշկական տվյալների կամավոր տեղադրման և արտակարգ իրավիճակներում լիազորված բժշկական անձնակազմին դրանց հասանելիությունն ապահովելու համար։",
+            termsPoint1_2: "Սույն պայմանները կարգավորում են Ձեր և Arvion-ի միջև հարաբերությունները։",
+            termsSection2Title: "2. Օգտատիրոջ պարտականությունները",
+            termsPoint2_1: "Դուք պարտավորվում եք գրանցման և տվյալների լրացման ժամանակ տրամադրել ճշգրիտ, արդիական և ամբողջական տեղեկատվություն։",
+            termsPoint2_2: "Դուք եք պատասխանատու Ձեր հաշվի գաղտնաբառի անվտանգության և դրա միջոցով կատարվող բոլոր գործողությունների համար։",
+            termsPoint2_3: "Արգելվում է Ծառայությունն օգտագործել ապօրինի նպատակներով կամ այնպիսի գործողությունների համար, որոնք կարող են վնասել Ծառայության բնականոն գործունեությունը։",
+            termsSection3Title: "3. Arvion-ի իրավունքներն ու պատասխանատվությունը",
+            termsPoint3_1: "Arvion-ը պարտավորվում է գործադրել բոլոր խելամիտ ջանքերը՝ Ծառայության անխափան և անվտանգ աշխատանքն ապահովելու համար։",
+            termsPoint3_2: "Arvion-ը բժշկական խորհրդատվություն կամ ծառայություն չի մատուցում։ Այն միայն տվյալների փոխանցման հարթակ է։",
+            termsPoint3_3: "Arvion-ն իրավունք ունի ժամանակավորապես դադարեցնել կամ սահմանափակել ցանկացած Օգտատիրոջ հասանելիությունը Ծառայությանը, եթե վերջինս խախտում է սույն պայմանները։",
+            privacyTitle: "Բ. Գաղտնիության Քաղաքականություն",
+            privacyIntro: "Ձեր տվյալների գաղտնիությունը մեր գերխնդիրն է։",
+            privacySection1Title: "1. Ինչ տվյալներ ենք հավաքագրում",
+            privacyDataCollectionIntro: "Մենք հավաքագրում ենք այն տվյալները, որոնք Դուք կամավոր տրամադրում եք.",
+            privacyData1_title: "Անձնական տվյալներ:",
+            privacyData1_desc: "Անուն, ազգանուն, ծննդյան օր, լուսանկար։",
+            privacyData2_title: "Կոնտակտային տվյալներ:",
+            privacyData2_desc: "Էլեկտրոնային հասցե, հեռախոսահամար։",
+            privacyData3_title: "Բժշկական տվյալներ:",
+            privacyData3_desc: "Արյան խումբ, ալերգիաներ, քրոնիկական հիվանդություններ, ընդունվող դեղամիջոցներ և այլ առողջական տեղեկություններ։",
+            privacySection2Title: "2. Ինչպես ենք օգտագործում Ձեր տվյալները",
+            privacyUsageIntro: "Ձեր տվյալներն օգտագործվում են բացառապես հետևյալ նպատակներով.",
+            privacyUsage1: "Արտակարգ իրավիճակներում Ձեր տվյալները հասանելի դարձնելու լիազորված բժիշկներին։",
+            privacyUsage2: "Ձեր հաշիվը կառավարելու և Ձեզ հետ կապ հաստատելու համար։",
+            privacyUsage3: "Ծառայության որակը բարելավելու համար (օգտագործելով միայն ապանձնավորված և ընդհանրացված վիճակագրական տվյալներ)։",
+            privacySection3Title: "3. Տվյալների փոխանցում երրորդ անձանց",
+            privacySharingIntro: "Մենք չենք վաճառում, վարձակալությամբ չենք տալիս և որևէ այլ կերպ չենք տրամադրում Ձեր անձնական տվյալները երրորդ անձանց, բացառությամբ այն դեպքերի, երբ.",
+            privacySharing1: "Լիազորված բժիշկը որոնման համակարգի միջոցով մուտք է գործում Ձեր էջ՝ բժշկական օգնություն ցուցաբերելու նպատակով։",
+            privacySharing2: "Դա պահանջվում է ՀՀ օրենսդրությամբ։",
+            privacySection4Title: "4. Ձեր իրավունքները",
+            privacyRights: "Դուք իրավունք ունեք ցանկացած պահի դիտել, խմբագրել կամ ամբողջությամբ հեռացնել Ձեր տվյալները՝ մուտք գործելով Ձեր անձնական հաշիվ։",
+            footerTerms: "Պայմաններ և գաղտնիություն",
+            footerSecurity: "Անվտանգություն",
+            footerStatus: "Կարգավիճակ"
+          },
+          en: {
+            docTitle: "Arvion - Terms & Privacy",
+            logoText: "Arvion",
+            navHome: "Home",
+            navAbout: "About Project",
+            navHowItWorks: "How It Works",
+            navLogin: "Login / Sign Up",
+            pageTitle: "Terms & Privacy",
+            welcomeText: "Welcome to Arvion. By using our services, you agree to the terms and policies below. Please read this document carefully.",
+            termsTitle: "A. Terms of Use",
+            termsSection1Title: "1. General Provisions",
+            termsPoint1_1: "The Arvion service (hereinafter 'Service') is designed for the voluntary entry of personal and medical data by users (hereinafter 'You', 'User') and for providing access to it to authorized medical personnel in emergency situations.",
+            termsPoint1_2: "These terms govern the relationship between you and Arvion.",
+            termsSection2Title: "2. User Responsibilities",
+            termsPoint2_1: "You agree to provide accurate, current, and complete information during registration and data entry.",
+            termsPoint2_2: "You are responsible for the security of your account password and for all activities that occur under your account.",
+            termsPoint2_3: "It is forbidden to use the Service for illegal purposes or for any actions that may harm the normal operation of the Service.",
+            termsSection3Title: "3. Arvion's Rights and Responsibilities",
+            termsPoint3_1: "Arvion undertakes to make all reasonable efforts to ensure the uninterrupted and secure operation of the Service.",
+            termsPoint3_2: "Arvion does not provide medical advice or services. It is solely a data transfer platform.",
+            termsPoint3_3: "Arvion has the right to temporarily suspend or restrict any User's access to the Service if the latter violates these terms.",
+            privacyTitle: "B. Privacy Policy",
+            privacyIntro: "Your privacy is our priority.",
+            privacySection1Title: "1. What Data We Collect",
+            privacyDataCollectionIntro: "We collect the data that you voluntarily provide:",
+            privacyData1_title: "Personal Data:",
+            privacyData1_desc: "Name, surname, date of birth, photo.",
+            privacyData2_title: "Contact Data:",
+            privacyData2_desc: "Email address, phone number.",
+            privacyData3_title: "Medical Data:",
+            privacyData3_desc: "Blood type, allergies, chronic diseases, medications taken, and other health information.",
+            privacySection2Title: "2. How We Use Your Data",
+            privacyUsageIntro: "Your data is used exclusively for the following purposes:",
+            privacyUsage1: "To make your data available to authorized doctors in emergency situations.",
+            privacyUsage2: "To manage your account and communicate with you.",
+            privacyUsage3: "To improve the quality of the Service (using only anonymized and aggregated statistical data).",
+            privacySection3Title: "3. Data Transfer to Third Parties",
+            privacySharingIntro: "We do not sell, rent, or otherwise provide your personal data to third parties, except when:",
+            privacySharing1: "An authorized doctor accesses your profile through the search system for the purpose of providing medical assistance.",
+            privacySharing2: "It is required by the legislation of the Republic of Armenia.",
+            privacySection4Title: "4. Your Rights",
+            privacyRights: "You have the right to view, edit, or completely delete your data at any time by accessing your personal account.",
+            footerTerms: "Terms & Privacy",
+            footerSecurity: "Security",
+            footerStatus: "Status"
+          },
+          ru: {
+            docTitle: "Arvion - Условия и Конфиденциальность",
+            logoText: "Arvion",
+            navHome: "Главная",
+            navAbout: "О проекте",
+            navHowItWorks: "Как это работает",
+            navLogin: "Вход / Регистрация",
+            pageTitle: "Условия и Конфиденциальность",
+            welcomeText: "Добро пожаловать в Arvion. Используя наши услуги, вы соглашаетесь с нижеизложенными условиями и политикой. Пожалуйста, внимательно прочтите этот документ.",
+            termsTitle: "А. Условия использования",
+            termsSection1Title: "1. Общие положения",
+            termsPoint1_1: "Сервис Arvion (далее «Сервис») предназначен для добровольного размещения пользователями (далее «Вы», «Пользователь») личных и медицинских данных и обеспечения доступа к ним авторизованному медицинскому персоналу в чрезвычайных ситуациях.",
+            termsPoint1_2: "Настоящие условия регулируют отношения между вами и Arvion.",
+            termsSection2Title: "2. Обязанности пользователя",
+            termsPoint2_1: "Вы обязуетесь предоставлять точную, актуальную и полную информацию при регистрации и заполнении данных.",
+            termsPoint2_2: "Вы несете ответственность за безопасность пароля вашей учетной записи и за все действия, которые совершаются под вашей учетной записью.",
+            termsPoint2_3: "Запрещается использовать Сервис в незаконных целях или для действий, которые могут нанести вред нормальной работе Сервиса.",
+            termsSection3Title: "3. Права и обязанности Arvion",
+            termsPoint3_1: "Arvion обязуется прилагать все разумные усилия для обеспечения бесперебойной и безопасной работы Сервиса.",
+            termsPoint3_2: "Arvion не предоставляет медицинские консультации или услуги. Это исключительно платформа для передачи данных.",
+            termsPoint3_3: "Arvion имеет право временно приостановить или ограничить доступ любого Пользователя к Сервису, если последний нарушает настоящие условия.",
+            privacyTitle: "Б. Политика конфиденциальности",
+            privacyIntro: "Конфиденциальность ваших данных — наш главный приоритет.",
+            privacySection1Title: "1. Какие данные мы собираем",
+            privacyDataCollectionIntro: "Мы собираем данные, которые вы добровольно предоставляете:",
+            privacyData1_title: "Личные данные:",
+            privacyData1_desc: "Имя, фамилия, дата рождения, фотография.",
+            privacyData2_title: "Контактные данные:",
+            privacyData2_desc: "Адрес электронной почты, номер телефона.",
+            privacyData3_title: "Медицинские данные:",
+            privacyData3_desc: "Группа крови, аллергии, хронические заболевания, принимаемые лекарства и другая информация о здоровье.",
+            privacySection2Title: "2. Как мы используем ваши данные",
+            privacyUsageIntro: "Ваши данные используются исключительно в следующих целях:",
+            privacyUsage1: "Для предоставления доступа к вашим данным авторизованным врачам в чрезвычайных ситуациях.",
+            privacyUsage2: "Для управления вашей учетной записью и связи с вами.",
+            privacyUsage3: "Для улучшения качества Сервиса (используя только анонимизированные и обобщенные статистические данные).",
+            privacySection3Title: "3. Передача данных третьим лицам",
+            privacySharingIntro: "Мы не продаем, не сдаем в аренду и никаким иным образом не предоставляем ваши личные данные третьим лицам, за исключением случаев, когда:",
+            privacySharing1: "Авторизованный врач получает доступ к вашему профилю через поисковую систему с целью оказания медицинской помощи.",
+            privacySharing2: "Это требуется законодательством Республики Армения.",
+            privacySection4Title: "4. Ваши права",
+            privacyRights: "Вы имеете право в любое время просматривать, редактировать или полностью удалять свои данные, войдя в свою личную учетную запись.",
+            footerTerms: "Условия и конфиденциальность",
+            footerSecurity: "Безопасность",
+            footerStatus: "Статус"
+          }
+        };
+
+        const icon = menuToggleBtn.querySelector("i");
+        const closeMobileMenu = () => {
+          mobileNavMenu.classList.remove("active");
+          icon.classList.remove("fa-times");
+          icon.classList.add("fa-bars");
+        };
+        menuToggleBtn.addEventListener("click", (event) => {
+          event.stopPropagation();
+          const isActive = mobileNavMenu.classList.toggle("active");
+          icon.classList.toggle("fa-bars", !isActive);
+          icon.classList.toggle("fa-times", isActive);
+        });
+        
+        mobileNavMenu.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMobileMenu));
+
+        const setLanguage = (lang) => {
+          if (!translations[lang]) return;
+          const t = translations[lang];
+
+          document.querySelectorAll("[data-key]").forEach((element) => {
+            const key = element.getAttribute("data-key");
+            if (t[key] !== undefined) {
+              element.innerHTML = t[key];
+            }
+          });
+          document.documentElement.lang = lang;
+          document.title = t.docTitle;
+          document.getElementById("current-lang").textContent = langDropdown.querySelector(`a[data-lang-code="${lang}"]`).textContent;
+          localStorage.setItem("userLanguage", lang);
+        };
+
+        langSelector.addEventListener("click", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          langDropdown.classList.toggle("show");
+        });
+
+        langDropdown.addEventListener("click", (event) => {
+          event.preventDefault();
+          const langLink = event.target.closest("[data-lang-code]");
+          if (langLink) {
+            setLanguage(langLink.getAttribute("data-lang-code"));
+            langDropdown.classList.remove("show");
+          }
+        });
+
+        document.body.addEventListener("click", (event) => {
+          if (menuToggleBtn && !menuToggleBtn.contains(event.target) && !mobileNavMenu.contains(event.target)) {
+            closeMobileMenu();
+          }
+          if (langSelector && !langSelector.contains(event.target)) {
+            langDropdown.classList.remove("show");
+          }
+        });
+
+        mobileNavMenu.addEventListener("click", (e) => e.stopPropagation());
+        langDropdown.addEventListener("click", (e) => e.stopPropagation());
+
+        const savedLang = localStorage.getItem("userLanguage") || "hy";
+        setLanguage(savedLang);
+      });
+    </script>
+  </body>
+</html>
