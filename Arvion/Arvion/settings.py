@@ -19,7 +19,7 @@ SECRET_KEY = "django-insecure-!hu)b&ofry6yz)e7e3us_44#23*o8+!+9cbuzf83i4_d_l3agx
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["arvion-am.onrender.com", "3.75.158.163"]
+ALLOWED_HOSTS = ["arvion-test.onrender.com", "44.226.145.213"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
